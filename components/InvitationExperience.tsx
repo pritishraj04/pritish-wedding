@@ -91,7 +91,7 @@ export default function InvitationExperience({ weddingData }: { weddingData?: an
               {/* LOGO */}
               <div className="w-[80vw] md:w-[700px] h-32 md:h-48 relative">
                 <Image
-                  src="/assets/images/logo-26.webp"
+                  src="/assets/images/logo-27.webp"
                   alt="Logo"
                   fill
                   sizes="(max-width: 768px) 80vw, 700px"
