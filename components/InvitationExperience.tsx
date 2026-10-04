@@ -50,7 +50,7 @@ export default function InvitationExperience({ weddingData }: { weddingData?: an
         ═══════════════════════════════════════════════════════ */}
         <video
           ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover z-0"
+          className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
           src="/assets/video/bg.mp4"
           autoPlay
           loop
@@ -142,6 +142,7 @@ export default function InvitationExperience({ weddingData }: { weddingData?: an
               src="/assets/images/ring.webp"
               alt="Ring"
               fill
+              sizes="(max-width: 768px) 50vw, 400px"
               className="object-contain animate-[spin_20s_linear_infinite]"
               priority
             />
