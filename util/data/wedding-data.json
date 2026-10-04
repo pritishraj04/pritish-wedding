@@ -1,0 +1,66 @@
+{
+    "eventType": "Wedding",
+    "couple": {
+        "groom": {
+            "name": "Pritish Raj",
+            "parents": {
+                "mother": "",
+                "father": ""
+            }
+        },
+        "bride": {
+            "name": "Simran Singh",
+            "parents": {
+                "mother": "",
+                "father": ""
+            }
+        },
+        "hashtag": "#PritishWedsSimran"
+    },
+    "wedding": {
+        "date": "2026-12-11T19:00:00",
+        "displayDate": "DECEMBER 11th, 2026"
+    },
+    "celebrations": [
+        {
+            "name": "Wedding Ceremony",
+            "date": "December 11, 2026",
+            "time": "07:00 PM onwards",
+            "venueTitle": "TAJ City Centre, Patna",
+            "venueDetails": "6th Floor, Vaishali, TAJ Patna",
+            "venue": "TAJ City Centre, Patna",
+            "googleMapsUrl": "https://maps.app.goo.gl/aQqB3tujgbEd3WBo6",
+            "showLocation": true,
+            "mapImage": "assets/images/map.jpeg",
+            "dressCode": "Traditional Elegance",
+            "highlight": true
+        },
+        {
+            "name": "Reception",
+            "date": "December 14, 2026",
+            "time": "07:00 PM onwards",
+            "venueTitle": "TAJ City Centre, Patna",
+            "venueDetails": "6th Floor, Vaishali, TAJ Patna",
+            "venue": "TAJ City Centre, Patna",
+            "googleMapsUrl": "https://maps.app.goo.gl/aQqB3tujgbEd3WBo6",
+            "showLocation": true,
+            "mapImage": "assets/images/map.jpeg",
+            "dressCode": "Occasion Ready",
+            "highlight": false
+        }
+    ],
+    "contact": {
+        "whatsapp": "918709595001",
+        "instagram": ""
+    },
+    "messages": {
+        "inviteText": "With immense joy and heartfelt happiness, we request the honor of your presence at the wedding ceremony of Pritish and Simran. We would be delighted to have you join us as we celebrate the beginning of our new life together.",
+        "thankYou": "With grateful hearts, we express our deepest thanks for gracing our wedding celebration. Your presence and blessings truly made the occasion special.",
+        "coupleQuote": ""
+    },
+    "music": {
+        "url": "assets/music/music.mp3",
+        "autoplay": true
+    },
+    "websiteUrl": "https://thegolden25.netlify.app/"
+}

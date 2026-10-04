@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magical Three.js Effect</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+    </style>
+    <!-- Import map for Three.js ES Modules -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="canvas-container"></div>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+        import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+        // 1. Setup Scene, Camera, Renderer
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, 15);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // optimize for high DPI displays
+        container.appendChild(renderer.domElement);
+
+        // 2. Background: Deep Burgundy Ripple / Liquid Floral Effect
+        // We use a full-screen plane that stays fixed in the background
+        const bgGeometry = new THREE.PlaneGeometry(100, 100);
+        const bgMaterial = new THREE.ShaderMaterial({
+            uniforms: {
+                time: { value: 0.0 }
+            },
+            vertexShader: `
+                varying vec2 vUv;
+                void main() {
+                    vUv = uv;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `,
+            fragmentShader: `
+                uniform float time;
+                varying vec2 vUv;
+
+                // Simple procedural 2D noise function for ripples
+                float random(in vec2 st) {
+                    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+                }
+                float noise(in vec2 st) {
+                    vec2 i = floor(st);
+                    vec2 f = fract(st);
+                    float a = random(i);
+                    float b = random(i + vec2(1.0, 0.0));
+                    float c = random(i + vec2(0.0, 1.0));
+                    float d = random(i + vec2(1.0, 1.0));
+                    vec2 u = f * f * (3.0 - 2.0 * f);
+                    return mix(a, b, u.x) + (c - a)* u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
+                }
+
+                void main() {
+                    vec2 uv = vUv * 3.0; // Scale UV for denser pattern
+                    
+                    // Liquid refraction / ripple effect
+                    uv.x += sin(uv.y * 4.0 + time * 0.5) * 0.05;
+                    uv.y += cos(uv.x * 4.0 + time * 0.5) * 0.05;
+                    
+                    // Organic floral-like noise shapes
+                    float n = noise(uv * 2.0 + time * 0.2);
+                    
+                    // Deep burgundy/dark red color palette
+                    vec3 darkBurgundy = vec3(0.08, 0.0, 0.02);
+                    vec3 richRed = vec3(0.25, 0.02, 0.05);
+                    vec3 petalEdge = vec3(0.4, 0.05, 0.1);
+                    
+                    // Blend colors based on noise to simulate overlapping petals in liquid
+                    vec3 color = mix(darkBurgundy, richRed, smoothstep(0.2, 0.8, n));
+                    color = mix(color, petalEdge, smoothstep(0.7, 1.0, n) * 0.5);
+
+                    // Add subtle vignette
+                    float dist = distance(vUv, vec2(0.5));
+                    color *= smoothstep(0.8, 0.2, dist);
+
+                    gl_FragColor = vec4(color, 1.0);
+                }
+            `,
+            depthWrite: false
+        });
+        const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
+        bgMesh.position.z = -20; // Push far back
+        scene.add(bgMesh);
+
+        // 3. Ambient Particle Field (Golden Dust / Embers)
+        const particleCount = 800;
+        const particleGeometry = new THREE.BufferGeometry();
+        const particlePositions = new Float32Array(particleCount * 3);
+        const particleSizes = new Float32Array(particleCount);
+        const particleTimeOffsets = new Float32Array(particleCount);
+
+        for(let i = 0; i < particleCount; i++) {
+            // Random positions spread across a volume
+            particlePositions[i*3] = (Math.random() - 0.5) * 30;     // x
+            particlePositions[i*3+1] = (Math.random() - 0.5) * 30;   // y
+            particlePositions[i*3+2] = (Math.random() - 0.5) * 15;   // z
+            
+            particleSizes[i] = Math.random() * 2.0 + 0.5;
+            particleTimeOffsets[i] = Math.random() * Math.PI * 2;
+        }
+
+        particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+        particleGeometry.setAttribute('size', new THREE.BufferAttribute(particleSizes, 1));
+        particleGeometry.setAttribute('timeOffset', new THREE.BufferAttribute(particleTimeOffsets, 1));
+
+        // Create a procedural soft glowing circular particle texture
+        const createParticleTexture = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = 32;
+            canvas.height = 32;
+            const context = canvas.getContext('2d');
+            const gradient = context.createRadialGradient(16, 16, 0, 16, 16, 16);
+            gradient.addColorStop(0, 'rgba(255, 255, 255, 1)');
+            gradient.addColorStop(0.2, 'rgba(255, 220, 100, 0.8)'); // Warm gold
+            gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+            context.fillStyle = gradient;
+            context.fillRect(0, 0, 32, 32);
+            return new THREE.CanvasTexture(canvas);
+        };
+        const particleMap = createParticleTexture();
+
+        // Custom shader for pulsating glowing particles
+        const particleMaterial = new THREE.ShaderMaterial({
+            uniforms: {
+                time: { value: 0.0 },
+                color: { value: new THREE.Color(0xffd700) }, // Golden
+                pointTexture: { value: particleMap }
+            },
+            vertexShader: `
+                attribute float size;
+                attribute float timeOffset;
+                varying float vAlpha;
+                uniform float time;
+                
+                void main() {
+                    vec3 pos = position;
+                    
+                    // Gentle upward drift
+                    pos.y += time * 0.5;
+                    // Wrap particles around vertically
+                    pos.y = mod(pos.y + 15.0, 30.0) - 15.0;
+                    
+                    // Soft horizontal swaying motion
+                    pos.x += sin(time * 0.5 + timeOffset) * 0.5;
+                    pos.z += cos(time * 0.5 + timeOffset) * 0.5;
+
+                    vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+                    
+                    // Pulsate size based on time and individual offset
+                    float currentSize = size * (0.8 + 0.4 * sin(time * 2.0 + timeOffset));
+                    
+                    gl_PointSize = currentSize * (300.0 / -mvPosition.z); // Perspective scaling
+                    gl_Position = projectionMatrix * mvPosition;
+                    
+                    // Pulsate opacity (flicker)
+                    vAlpha = 0.4 + 0.6 * sin(time * 3.0 + timeOffset);
+                }
+            `,
+            fragmentShader: `
+                uniform vec3 color;
+                uniform sampler2D pointTexture;
+                varying float vAlpha;
+                
+                void main() {
+                    vec4 texColor = texture2D(pointTexture, gl_PointCoord);
+                    gl_FragColor = vec4(color * texColor.rgb, texColor.a * vAlpha);
+                }
+            `,
+            transparent: true,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false
+        });
+
+        const ambientParticles = new THREE.Points(particleGeometry, particleMaterial);
+        scene.add(ambientParticles);
+
+        // 4. Magical Swirling Light Trails (Comet/Fairy Dust Helix)
+        const trailParticleCount = 1200;
+        const trailGeometry = new THREE.BufferGeometry();
+        const trailPositions = new Float32Array(trailParticleCount * 3);
+        const trailAges = new Float32Array(trailParticleCount); // 0.0 to 1.0 (1.0 = dead)
+        const trailSizes = new Float32Array(trailParticleCount);
+        
+        // Initialize all trail particles as 'dead' (age = 1.0)
+        for(let i = 0; i < trailParticleCount; i++) {
+            trailAges[i] = 1.0; 
+            trailSizes[i] = 0;
+        }
+
+        trailGeometry.setAttribute('position', new THREE.BufferAttribute(trailPositions, 3));
+        trailGeometry.setAttribute('age', new THREE.BufferAttribute(trailAges, 1));
+        trailGeometry.setAttribute('size', new THREE.BufferAttribute(trailSizes, 1));
+
+        const trailMaterial = new THREE.ShaderMaterial({
+            uniforms: {
+                pointTexture: { value: particleMap },
+                headColor: { value: new THREE.Color(0xffffff) }, // Bright white/gold head
+                tailColor: { value: new THREE.Color(0xff8800) }  // Deep orange/gold tail
+            },
+            vertexShader: `
+                attribute float age;
+                attribute float size;
+                varying float vAge;
+                
+                void main() {
+                    vAge = age;
+                    vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+                    
+                    // Particles shrink continuously as they age (age goes from 0.0 to 1.0)
+                    float currentSize = size * max(0.0, 1.0 - age);
+                    
+                    gl_PointSize = currentSize * (300.0 / -mvPosition.z);
+                    gl_Position = projectionMatrix * mvPosition;
+                }
+            `,
+            fragmentShader: `
+                uniform vec3 headColor;
+                uniform vec3 tailColor;
+                uniform sampler2D pointTexture;
+                varying float vAge;
+                
+                void main() {
+                    // Discard pixel if particle is fully aged
+                    if (vAge >= 1.0) discard;
+                    
+                    vec4 texColor = texture2D(pointTexture, gl_PointCoord);
+                    
+                    // Smoothly transition color from head (hot white) to tail (orange)
+                    vec3 color = mix(headColor, tailColor, pow(vAge, 0.5));
+                    
+                    // Fade out transparency gracefully towards the tail
+                    float alpha = (1.0 - vAge) * texColor.a;
+                    
+                    gl_FragColor = vec4(color * texColor.rgb, alpha);
+                }
+            `,
+            transparent: true,
+            blending: THREE.AdditiveBlending, // Intensely luminous overlapping
+            depthWrite: false
+        });
+
+        const trailParticles = new THREE.Points(trailGeometry, trailMaterial);
+        scene.add(trailParticles);
+
+        let trailIndex = 0;
+        // Function to emit a particle into the trail pool
+        const spawnTrailParticle = (x, y, z, isHead = false) => {
+            // Add a little bit of randomized scatter for the ribbon effect
+            const scatter = isHead ? 0.05 : 0.3;
+            trailPositions[trailIndex*3] = x + (Math.random()-0.5) * scatter;
+            trailPositions[trailIndex*3+1] = y + (Math.random()-0.5) * scatter;
+            trailPositions[trailIndex*3+2] = z + (Math.random()-0.5) * scatter;
+            
+            trailAges[trailIndex] = 0.0; // Reset age to birth
+            trailSizes[trailIndex] = isHead ? 8.0 : (Math.random() * 3.0 + 2.0); // Head is larger
+            
+            trailIndex = (trailIndex + 1) % trailParticleCount; // Cycle through pool
+        };
+
+        // 5. Post-Processing: UnrealBloomPass
+        const renderPass = new RenderPass(scene, camera);
+        
+        // Config: Resolution, Strength (Glow intensity), Radius (Glow spread), Threshold (Minimum brightness to glow)
+        const bloomPass = new UnrealBloomPass(
+            new THREE.Vector2(window.innerWidth, window.innerHeight),
+            1.8,  // Strength - pushed higher for cinematic bloom
+            0.8,  // Radius
+            0.15  // Threshold
+        );
+
+        // Required in newer Three.js versions for correct color output management
+        const outputPass = new OutputPass();
+
+        const composer = new EffectComposer(renderer);
+        composer.addPass(renderPass);
+        composer.addPass(bloomPass);
+        composer.addPass(outputPass);
+
+        // Handle Responsive Resizing
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // 6. Main Render/Animation Loop
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            const elapsedTime = clock.getElapsedTime();
+
+            // 6a. Update Background Time
+            bgMaterial.uniforms.time.value = elapsedTime;
+
+            // 6b. Update Ambient Particles Time
+            particleMaterial.uniforms.time.value = elapsedTime;
+
+            // 6c. Update Swirling Trail (Helix mathematical path)
+            // Radius pulses in and out slightly
+            const helixRadius = 4.0 + Math.sin(elapsedTime * 0.7) * 1.5;
+            // Height bobs up and down smoothly
+            const helixHeight = Math.sin(elapsedTime * 0.5) * 4.0;
+            const helixAngle = elapsedTime * 2.5; // Swirl speed
+            
+            const headX = Math.cos(helixAngle) * helixRadius;
+            const headY = helixHeight;
+            const headZ = Math.sin(helixAngle) * helixRadius;
+
+            // Spawn the large bright 'head' of the comet
+            spawnTrailParticle(headX, headY, headZ, true);
+            // Spawn trailing 'ribbon' stream particles behind the head
+            for(let i = 0; i < 4; i++) {
+                spawnTrailParticle(headX, headY, headZ, false);
+            }
+
+            // Age the existing trail particles
+            const ages = trailGeometry.attributes.age.array;
+            for(let i = 0; i < trailParticleCount; i++) {
+                if (ages[i] < 1.0) {
+                    ages[i] += 0.02; // Trail decay speed (lower = longer tail)
+                }
+            }
+            
+            // Mark attributes for re-upload to GPU
+            trailGeometry.attributes.age.needsUpdate = true;
+            trailGeometry.attributes.position.needsUpdate = true;
+
+            // Render scene through post-processing pipeline
+            composer.render();
+        }
+
+        // Start Loop
+        animate();
+    </script>
+</body>
+</html>
