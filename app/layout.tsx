@@ -1,4 +1,4 @@
-import { Cormorant_Garamond, Great_Vibes, Montserrat, Playfair_Display } from "next/font/google";
+import { Cormorant_Garamond, Great_Vibes, Montserrat, Playfair_Display, Geist } from "next/font/google";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -13,11 +13,7 @@ const greatVibes = Great_Vibes({
   weight: "400",
 });
 
-const montserrat = Montserrat({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  weight: ["300", "400", "500"],
-});
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const playfair = Playfair_Display({
   variable: "--font-headline",
@@ -27,6 +23,7 @@ const playfair = Playfair_Display({
 
 
 import type { Viewport } from 'next';
+import { cn } from "@/lib/utils";
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -43,7 +40,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${greatVibes.variable} ${montserrat.variable} ${playfair.variable} h-full antialiased`}
+      className={cn("h-full", "antialiased", cormorant.variable, greatVibes.variable, playfair.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col font-sans bg-black text-[#F5E6C8] overflow-hidden">{children}</body>
     </html>
