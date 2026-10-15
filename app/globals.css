@@ -11,6 +11,8 @@
   --font-serif: var(--font-serif);
   --font-script: var(--font-script);
   --font-headline: var(--font-headline);
+  --font-wonderling: var(--font-wonderling, 'Wonderling');
+  --font-hallbothy: var(--font-hallbothy, 'Hallbothy');
 
   --animate-royal-glow: royal-glow 6s ease-in-out infinite;
   --animate-glint: glint 8s ease-in-out infinite;
@@ -154,3 +156,27 @@
     @apply bg-background text-foreground;}
   html {
     @apply font-sans;}}
+
+@font-face {
+  font-family: 'Wonderling';
+  src: url('/assets/fonts/the-wonderling-font-family/trialwonderling-regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hallbothy';
+  src: url('/assets/fonts/hallbothy-font/Hallbothy-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-wonderling {
+  font-family: var(--font-wonderling), 'Wonderling', serif;
+}
+
+.font-hallbothy {
+  font-family: var(--font-hallbothy), 'Hallbothy', cursive;
+}

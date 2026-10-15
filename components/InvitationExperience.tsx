@@ -173,14 +173,19 @@ export default function InvitationExperience({ weddingData }: { weddingData?: an
 
             {/* THE LETTER CLIP WRAPPER */}
             <div
-              className="absolute inset-x-0 top-[20%] bottom-0 z-10 pointer-events-none"
-              style={{ clipPath: "polygon(-50% -500%, 150% -500%, 150% 100%, -50% 100%)" }}
+              className="absolute inset-x-0 top-[20%] bottom-0 z-10 pointer-events-none overflow-visible"
+              style={{
+                clipPath: isLetterVisible
+                  ? "none"
+                  : "polygon(-100vw -500vh, 200vw -500vh, 200vw 100%, -100vw 100%)",
+                transition: "clip-path 1.5s cubic-bezier(0.25, 1, 0.5, 1)",
+              }}
             >
               <Letter
                 isOpen={stage === "opened"}
                 onClose={handleClose}
                 weddingData={weddingData}
-                className="absolute bottom-2 left-1/2 -translate-x-1/2 transition-all duration-1500 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 transition-all duration-1500 ease-[cubic-bezier(0.25,1,0.5,1)]"
               />
             </div>
 

@@ -61,7 +61,7 @@ function StackCard({
   return (
     <section className="sticky top-0 grid h-[100dvh] place-items-center">
       <motion.figure
-        className="relative m-0 origin-top overflow-visible rounded-sm"
+        className="relative m-0 origin-top overflow-visible rounded-sm transform-gpu"
         style={{
           scale,
           rotate: reduceMotion ? 0 : TILT_PATTERN[index % TILT_PATTERN.length],

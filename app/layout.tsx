@@ -1,5 +1,18 @@
 import { Cormorant_Garamond, Great_Vibes, Montserrat, Playfair_Display, Geist } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const wonderling = localFont({
+  src: "../public/assets/fonts/the-wonderling-font-family/trialwonderling-regular.otf",
+  variable: "--font-wonderling",
+  display: "swap",
+});
+
+const hallbothy = localFont({
+  src: "../public/assets/fonts/hallbothy-font/Hallbothy-Regular.ttf",
+  variable: "--font-hallbothy",
+  display: "swap",
+});
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-serif",
@@ -40,7 +53,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", cormorant.variable, greatVibes.variable, playfair.variable, "font-sans", geist.variable)}
+      className={cn("h-full", "antialiased", cormorant.variable, greatVibes.variable, playfair.variable, "font-sans", geist.variable, wonderling.variable, hallbothy.variable)}
     >
       <body className="min-h-full flex flex-col font-sans bg-black text-[#F5E6C8] overflow-hidden">{children}</body>
     </html>

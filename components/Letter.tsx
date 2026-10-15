@@ -66,6 +66,10 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
     const displayDayMatch = dayWithSuffix.match(/\d+/);
     const displayDay = displayDayMatch ? displayDayMatch[0] : "31";
     const displaySuffix = dayWithSuffix.replace(/\d+/, '') || "ST";
+    const displayYear = dateParts[2] || (weddingData?.wedding?.date ? new Date(weddingData.wedding.date).getFullYear().toString() : "2026");
+
+    const mainEvent = weddingData?.celebrations?.find((c: any) => c.highlight) || weddingData?.celebrations?.[0];
+    const mainEventPlace = mainEvent?.venueTitle || mainEvent?.venue || "TAJ City Centre, Patna";
 
     const generateCalendarLink = (celebration: any) => {
         if (!celebration) return "#";
@@ -164,7 +168,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
     const cards = [
         {
             id: 'sec-0', content: (
-                <div className={`w-[92vw] max-w-md min-h-[82vh] flex flex-col items-center justify-center p-6 rounded-md shadow-2xl relative ${t.cardBg} `}>
+                <div className={`w-[92vw] max-w-md min-h-[82vh] flex flex-col items-center justify-center p-4 min-[430px]:p-5 sm:p-6 rounded-md shadow-2xl relative ${t.cardBg} `}>
                     {/* Paper Texture overlay */}
                     <div
                         className="absolute inset-0 opacity-70 pointer-events-none rounded-md"
@@ -175,69 +179,150 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                         }}
                     />
                     {/* Corner ornaments */}
-                    <CornerOrnament className={`absolute top-3 left-3 w-12 h-12 ${t.ornament}`} />
-                    <CornerOrnament className={`absolute top-3 right-3 w-12 h-12 ${t.ornament} -scale-x-100`} />
-                    <CornerOrnament className={`absolute bottom-3 left-3 w-12 h-12 ${t.ornament} -scale-y-100`} />
-                    <CornerOrnament className={`absolute bottom-3 right-3 w-12 h-12 ${t.ornament} scale-[-1]`} />
+                    <CornerOrnament className={`absolute top-2.5 left-2.5 min-[430px]:top-3 min-[430px]:left-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament}`} />
+                    <CornerOrnament className={`absolute top-2.5 right-2.5 min-[430px]:top-3 min-[430px]:right-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament} -scale-x-100`} />
+                    <CornerOrnament className={`absolute bottom-2.5 left-2.5 min-[430px]:bottom-3 min-[430px]:left-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament} -scale-y-100`} />
+                    <CornerOrnament className={`absolute bottom-2.5 right-2.5 min-[430px]:bottom-3 min-[430px]:right-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament} scale-[-1]`} />
 
                     {/* Double-line gold border */}
-                    <div className={`absolute inset-5 border ${t.border} pointer-events-none`} />
-                    <div className={`absolute inset-[26px] border ${t.border} opacity-50 pointer-events-none`} />
+                    <div className={`absolute inset-3.5 min-[430px]:inset-4 sm:inset-5 border ${t.border} pointer-events-none`} />
+                    <div className={`absolute inset-[18px] min-[430px]:inset-[22px] sm:inset-[26px] border ${t.border} opacity-50 pointer-events-none`} />
 
-                    <div className="relative z-10 flex flex-col items-center w-full h-full pt-4 pb-4">
-                        {/* Couple Image */}
-                        <div className="relative w-[65vw] max-w-[250px] aspect-[4/5] mb-6 pointer-events-none z-0">
-                            <Image
-                                src="/assets/images/couple.png"
-                                alt="Couple"
-                                fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                className="object-contain object-bottom scale-[1.35] origin-bottom"
-                                priority
-                            />
+                    {/* Garland swaying keyframes */}
+                    <style>{`
+                        @keyframes garland-sway-left {
+                            0%, 100% {
+                                transform: rotate(1deg);
+                            }
+                            50% {
+                                transform: rotate(3.8deg);
+                            }
+                        }
+                        @keyframes garland-sway-right {
+                            0%, 100% {
+                                transform: scaleX(-1) rotate(1deg);
+                            }
+                            50% {
+                                transform: scaleX(-1) rotate(3.8deg);
+                            }
+                        }
+                    `}</style>
+
+                    {/* Marigold garland — left edge */}
+                    <div
+                        className="absolute top-0 left-2 min-[390px]:left-2.5 min-[430px]:left-3.5 sm:left-4 w-[34px] min-[390px]:w-[40px] min-[430px]:w-[48px] sm:w-[54px] h-[65%] min-[390px]:h-[68%] min-[430px]:h-[72%] pointer-events-none z-20 overflow-visible origin-top"
+                        style={{
+                            animation: "garland-sway-left 4.6s ease-in-out infinite",
+                            transformOrigin: "top center",
+                        }}
+                    >
+                        <img
+                            src="/assets/images/phool.png"
+                            alt=""
+                            className="w-full h-full object-contain object-top"
+                        />
+                    </div>
+                    {/* Marigold garland — right edge (mirrored & tilted inward) */}
+                    <div
+                        className="absolute top-0 right-2 min-[390px]:right-2.5 min-[430px]:right-3.5 sm:right-4 w-[34px] min-[390px]:w-[40px] min-[430px]:w-[48px] sm:w-[54px] h-[65%] min-[390px]:h-[68%] min-[430px]:h-[72%] pointer-events-none z-20 overflow-visible origin-top"
+                        style={{
+                            animation: "garland-sway-right 5.2s ease-in-out infinite",
+                            transformOrigin: "top center",
+                        }}
+                    >
+                        <img
+                            src="/assets/images/phool.png"
+                            alt=""
+                            className="w-full h-full object-contain object-top"
+                        />
+                    </div>
+
+                    <div className="relative z-10 flex flex-col items-center justify-center w-full h-full py-2 min-[430px]:py-3 sm:py-4 px-2">
+                        {/* Group 1: Visual Announcement Header */}
+                        <div className="flex flex-col items-center mb-2 min-[390px]:mb-2.5 min-[430px]:mb-3.5 sm:mb-4 pointer-events-none">
+                            <div className="relative w-[118px] min-[390px]:w-[132px] min-[430px]:w-[155px] sm:w-[170px] aspect-[547/475] z-0">
+                                <Image
+                                    src="/assets/images/couple2.png"
+                                    alt="Couple"
+                                    fill
+                                    sizes="(max-width: 430px) 135px, 170px"
+                                    className="object-contain"
+                                    priority
+                                />
+                            </div>
+                            <div className="relative w-[98px] min-[390px]:w-[110px] min-[430px]:w-[128px] sm:w-[140px] aspect-[1546/1048] -mt-1 min-[430px]:-mt-1.5 sm:-mt-2">
+                                <Image
+                                    src="/assets/images/sv.png"
+                                    alt="Save the Date"
+                                    fill
+                                    sizes="(max-width: 430px) 115px, 140px"
+                                    className="object-contain"
+                                />
+                            </div>
                         </div>
 
-                        {/* Names */}
-                        <div className="relative w-full flex flex-col items-center justify-center mb-5 mt-2">
-                            {/* Faint '&' */}
-                            <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-10 text-8xl font-script text-[#ede3e3] z-0 opacity-70">&amp;</span>
+                        {/* Group 2: Hero Invitation & Couple Names */}
+                        <div className="flex flex-col items-center w-full mb-2 min-[390px]:mb-2.5 min-[430px]:mb-3.5 sm:mb-4 z-10">
+                            <p className={`font-serif italic text-xs min-[390px]:text-[13px] min-[430px]:text-sm sm:text-base tracking-widest text-center ${t.textCream} opacity-90 mb-0.5 min-[430px]:mb-1`}>
+                                for the wedding of
+                            </p>
+                            <span className={`font-wonderling uppercase text-lg min-[390px]:text-[19px] min-[430px]:text-[22px] sm:text-2xl font-semibold text-center ${t.textCream} leading-tight w-full px-4`}>
+                                {weddingData?.couple?.groom?.name ? `${weddingData.couple.groom.name.toUpperCase()}` : "PRITISH RAJ"}
+                            </span>
+                            <span className={`font-hallbothy text-2xl min-[390px]:text-[26px] min-[430px]:text-3xl sm:text-4xl my-0.5 min-[430px]:my-1 leading-none ${t.textGold}`}>
+                                and
+                            </span>
+                            <span className={`font-wonderling uppercase text-lg min-[390px]:text-[19px] min-[430px]:text-[22px] sm:text-2xl font-semibold text-center ${t.textCream} leading-tight w-full px-4`}>
+                                {weddingData?.couple?.bride?.name ? `${weddingData.couple.bride.name.toUpperCase()}` : "SIMRAN SINGH"}
+                            </span>
+                        </div>
 
-                            <p className={`font-sans uppercase text-[16px] md:text-xs font-semibold ${t.textCream} leading-[1.7] tracking-[.15em] z-10 text-center`}>
-                                {weddingData?.couple?.groom?.name ? `MR. ${weddingData.couple.groom.name.toUpperCase()}` : "MR. SUBODH VERMA"}<br />
-                                {weddingData?.couple?.bride?.name ? `MRS. ${weddingData.couple.bride.name.toUpperCase()}` : "MRS. SHWETA VERMA"}
+                        {/* Group 3: Event Specifics (Date, Venue & Sign-off) */}
+                        <div className="flex flex-col items-center w-full mb-3 min-[390px]:mb-3.5 min-[430px]:mb-5 sm:mb-6">
+                            {/* Date Row with vertical line dividers */}
+                            <div className="flex items-center justify-center">
+                                <span className={`font-serif uppercase text-xs min-[390px]:text-[13px] min-[430px]:text-sm sm:text-base tracking-[0.16em] min-[430px]:tracking-[0.22em] sm:tracking-[0.25em] font-bold ${t.textCream}`}>
+                                    {displayMonth.toUpperCase()}
+                                </span>
+                                <span className="w-[1.5px] h-4 min-[390px]:h-4.5 min-[430px]:h-5 sm:h-6 bg-[#75162D]/50 mx-2 min-[390px]:mx-2.5 min-[430px]:mx-3 sm:mx-3.5" />
+                                <span className={`font-serif text-2xl min-[390px]:text-[26px] min-[430px]:text-3xl sm:text-4xl font-bold ${t.textCream} leading-none tracking-normal px-0.5`}>
+                                    {displayDay}
+                                </span>
+                                <span className="w-[1.5px] h-4 min-[390px]:h-4.5 min-[430px]:h-5 sm:h-6 bg-[#75162D]/50 mx-2 min-[390px]:mx-2.5 min-[430px]:mx-3 sm:mx-3.5" />
+                                <span className={`font-serif uppercase text-xs min-[390px]:text-[13px] min-[430px]:text-sm sm:text-base tracking-[0.16em] min-[430px]:tracking-[0.22em] sm:tracking-[0.25em] font-bold ${t.textCream}`}>
+                                    {displayYear}
+                                </span>
+                            </div>
+
+                            {/* Main Event Venue / Address — spans full card width */}
+                            <p className={`font-serif uppercase text-[10px] min-[390px]:text-[11px] min-[430px]:text-xs sm:text-sm tracking-[0.14em] min-[430px]:tracking-[0.18em] sm:tracking-[0.2em] font-semibold text-center ${t.textCream} mt-1.5 min-[430px]:mt-2.5 w-full px-4 leading-relaxed`}>
+                                {mainEventPlace.toUpperCase()}
                             </p>
                         </div>
 
-                        <GoldDivider width="w-16" />
-
-                        {/* Date */}
-                        <h2 className={`font-sans uppercase text-3xl font-bold tracking-[0.2em] text-center ${t.textCream}`}>
-                            {displayDay}<sup className="text-sm align-top -ml-0.5 tracking-[0.2em]">{displaySuffix.toUpperCase()}</sup> <span className="ml-2">{displayMonth.toUpperCase()}</span>
-                        </h2>
-
                         {/* Minimal Shining Swipe Instruction */}
-                        <div className="absolute bottom-[-120px] left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 pointer-events-none">
+                        <div className="flex flex-col items-center gap-1 min-[430px]:gap-1.5 mt-1 min-[390px]:mt-1.5 min-[430px]:mt-2.5 sm:mt-3 pointer-events-none w-max z-30">
                             <style>{`
                                 @keyframes shine-text {
                                     0% { background-position: 200% center; }
                                     100% { background-position: -200% center; }
                                 }
                                 @keyframes swipe-up-gesture {
-                                    0% { transform: translateY(8px); opacity: 0; }
+                                    0% { transform: translateY(5px); opacity: 0; }
                                     30% { opacity: 0.6; }
                                     70% { opacity: 0.6; }
-                                    100% { transform: translateY(-8px); opacity: 0; }
+                                    100% { transform: translateY(-5px); opacity: 0; }
                                 }
                             `}</style>
                             <div className="animate-[swipe-up-gesture_2.5s_ease-in-out_infinite]">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" className={`w-7 h-7 md:w-8 md:h-8 ${t.textGold}`}>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" className={`w-5 h-5 min-[430px]:w-6 min-[430px]:h-6 ${t.textGold}`}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v11" />
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M16 8l-4-4-4 4" />
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.5 13.5v-1a1.5 1.5 0 0 0-3 0v.5m-3-2v-1a1.5 1.5 0 0 0-3 0v4.5M6.5 14.5v1.5A5.5 5.5 0 0 0 12 21.5h1A5.5 5.5 0 0 0 18.5 16v-2.5a1.5 1.5 0 0 0-1.5-1.5h-1.5" />
                                 </svg>
                             </div>
                             <span
-                                className="text-[9px] md:text-[10px] uppercase font-bold tracking-[0.4em] bg-clip-text text-transparent"
+                                className="text-[8px] min-[390px]:text-[8.5px] min-[430px]:text-[10px] uppercase font-bold tracking-[0.35em] min-[430px]:tracking-[0.4em] bg-clip-text text-transparent"
                                 style={{
                                     backgroundImage: 'linear-gradient(90deg, #75162D 0%, #75162D 40%, #F2D9A0 50%, #75162D 60%, #75162D 100%)',
                                     backgroundSize: '200% auto',
@@ -246,6 +331,11 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                             >
                                 Swipe to explore
                             </span>
+
+                            {/* More details to follow - font same as "for the wedding of" */}
+                            <p className="font-serif italic text-xs min-[390px]:text-[13px] min-[430px]:text-sm sm:text-base tracking-widest text-center text-[#75162D] mt-0.5 min-[430px]:mt-1">
+                                more details to follow
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -563,7 +653,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
             className={`origin-bottom flex flex-col transition-all duration-1500 ease-[cubic-bezier(0.2,0.8,0.3,1)] ${className} ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
             style={{
                 transform: `translateY(${isOpen ? "0%" : "100%"})`,
-                width: "100%",
+                width: "100vw",
                 zIndex: isOpen ? 40 : 10,
                 transitionDelay: isOpen ? '300ms' : '0ms'
             }}
