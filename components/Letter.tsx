@@ -343,7 +343,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
         },
         {
             id: 'sec-1', content: (
-                <div className={`w-[92vw] max-w-md min-h-[82vh] flex flex-col items-center justify-center p-6 rounded-md shadow-2xl relative ${t.cardBg} `}>
+                <div className={`w-[92vw] max-w-md min-h-[82vh] flex flex-col items-center justify-center p-4 min-[430px]:p-5 sm:p-6 rounded-md shadow-2xl relative ${t.cardBg} `}>
                     {/* Paper Texture overlay */}
                     <div
                         className="absolute inset-0 opacity-70 pointer-events-none rounded-md"
@@ -354,65 +354,80 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                         }}
                     />
                     {/* Corner ornaments */}
-                    <CornerOrnament className={`absolute top-3 left-3 w-12 h-12 ${t.ornament}`} />
-                    <CornerOrnament className={`absolute top-3 right-3 w-12 h-12 ${t.ornament} -scale-x-100`} />
-                    <CornerOrnament className={`absolute bottom-3 left-3 w-12 h-12 ${t.ornament} -scale-y-100`} />
-                    <CornerOrnament className={`absolute bottom-3 right-3 w-12 h-12 ${t.ornament} scale-[-1]`} />
+                    <CornerOrnament className={`absolute top-2.5 left-2.5 min-[430px]:top-3 min-[430px]:left-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament}`} />
+                    <CornerOrnament className={`absolute top-2.5 right-2.5 min-[430px]:top-3 min-[430px]:right-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament} -scale-x-100`} />
+                    <CornerOrnament className={`absolute bottom-2.5 left-2.5 min-[430px]:bottom-3 min-[430px]:left-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament} -scale-y-100`} />
+                    <CornerOrnament className={`absolute bottom-2.5 right-2.5 min-[430px]:bottom-3 min-[430px]:right-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament} scale-[-1]`} />
 
                     {/* Double-line gold border */}
-                    <div className={`absolute inset-5 border ${t.border} pointer-events-none`} />
-                    <div className={`absolute inset-[26px] border ${t.border} opacity-50 pointer-events-none`} />
+                    <div className={`absolute inset-3.5 min-[430px]:inset-4 sm:inset-5 border ${t.border} pointer-events-none`} />
+                    <div className={`absolute inset-[18px] min-[430px]:inset-[22px] sm:inset-[26px] border ${t.border} opacity-50 pointer-events-none`} />
 
-                    <div className="relative z-10 flex flex-col items-center w-full h-full pt-4 pb-4">
-                        <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[35vw] md:w-[180px] mb-5 object-contain opacity-80 mix-blend-multiply" />
+                    <div className="relative z-10 flex flex-col items-center justify-center w-full h-full py-2 min-[430px]:py-3 sm:py-4 px-2">
+                        {/* Header Badge */}
+                        <div className="flex flex-col items-center mb-1.5 min-[430px]:mb-2 pointer-events-none">
+                            <img src="/assets/images/logo-plain.svg?v=2" alt="Logo" className="w-[110px] min-[390px]:w-[125px] min-[430px]:w-[145px] sm:w-[160px] object-contain opacity-95" />
+                        </div>
 
-                        <GoldDivider width="w-24" />
+                        {/* Card Title */}
+                        <p className="font-serif italic text-xs min-[390px]:text-[13px] min-[430px]:text-sm tracking-widest text-center text-[#75162D] opacity-90 mb-0.5">
+                            itinerary & celebrations
+                        </p>
+                        <h2 className="font-wonderling uppercase text-xl min-[390px]:text-2xl min-[430px]:text-[28px] sm:text-3xl font-semibold text-center text-[#3B010B] leading-tight mb-1.5">
+                            When & Where
+                        </h2>
 
-                        <p className={`font-sans uppercase text-2xl md:text-3xl font-bold tracking-[0.2em] mb-2 text-center ${t.textGold}`}>When & Where</p>
-                        <p className={`font-sans text-[10px] md:text-xs font-semibold leading-[1.7] max-w-xs mb-4 text-center ${t.textMuted}`}>
-                            We cannot wait to share this beautiful evening with our closest friends and family.
+                        <GoldDivider width="w-20" />
+
+                        <p className="font-serif italic text-[10.5px] min-[390px]:text-[11.5px] min-[430px]:text-xs text-[#3B010B]/80 text-center max-w-[280px] min-[430px]:max-w-xs mt-1.5 mb-3 min-[430px]:mb-4 leading-relaxed">
+                            We cannot wait to celebrate this auspicious milestone with our closest family and friends.
                         </p>
 
-                        <div className="flex flex-col gap-6 w-full max-w-sm">
+                        {/* Celebrations Tiles */}
+                        <div className="flex flex-col gap-2.5 min-[390px]:gap-3 min-[430px]:gap-4 w-full max-w-[310px] min-[390px]:max-w-[330px] min-[430px]:max-w-sm">
                             {weddingData?.celebrations?.map((celeb: any, idx: number) => (
-                                <div key={idx} className="flex flex-col items-center gap-1.5">
-                                    <h4 className={`font-sans text-[10px] uppercase font-bold tracking-[0.3em] ${t.textGold}`}>{celeb.name}</h4>
-                                    <div className="flex flex-col items-center">
-                                        <span className={`font-sans uppercase text-sm md:text-base font-bold tracking-[0.2em] text-center ${t.textCream}`}>
-                                            {celeb.date}
-                                        </span>
-                                        <span className={`font-sans text-[10px] md:text-xs font-semibold leading-[1.7] tracking-wider mt-0.5 text-center ${t.textMuted}`}>
-                                            {celeb.time} • {celeb.venueTitle}
-                                        </span>
-                                    </div>
-                                    <div className="flex gap-3 mt-1.5">
-                                        <a
-                                            href={generateCalendarLink(celeb)}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className={`px-4 py-1.5 rounded-full text-[10px] md:text-[12px] uppercase tracking-[0.2em] font-semibold transition-all shadow-md active:scale-95 flex items-center gap-1.5 ${t.btnSolid} hover:scale-105`}
-                                        >
-                                            <Calendar className="w-2.5 h-2.5" />
-                                            Calendar
-                                        </a>
-                                        {celeb.googleMapsUrl && (
+                                <div key={idx} className="relative p-[1px] w-full bg-[#F2D9A0] shadow-sm rounded-sm">
+                                    <div className={`p-2.5 min-[390px]:p-3 min-[430px]:p-3.5 w-full ${t.cardBg} shadow-[inset_0_1px_1px_rgba(242,217,160,0.3)] flex flex-col items-center gap-0.5`}>
+                                        <h4 className="font-wonderling uppercase text-xs min-[390px]:text-sm min-[430px]:text-base font-semibold tracking-wider text-[#75162D]">
+                                            {celeb.name}
+                                        </h4>
+                                        <div className="flex items-center justify-center gap-2 mt-0.5">
+                                            <span className="font-serif uppercase text-[10px] min-[390px]:text-[11px] min-[430px]:text-xs tracking-[0.16em] font-bold text-[#3B010B]">
+                                                {celeb.date}
+                                            </span>
+                                            <span className="w-1 h-1 rounded-full bg-[#75162D]/60" />
+                                            <span className="font-serif text-[10px] min-[390px]:text-[11px] min-[430px]:text-xs font-semibold text-[#3B010B]/80">
+                                                {celeb.time}
+                                            </span>
+                                        </div>
+                                        <p className="font-serif uppercase text-[9px] min-[390px]:text-[10px] min-[430px]:text-[11px] tracking-wider text-[#3B010B]/75 text-center mt-0.5 leading-snug">
+                                            {celeb.venueTitle}
+                                        </p>
+                                        <div className="flex gap-2.5 mt-2">
                                             <a
-                                                href={celeb.googleMapsUrl}
+                                                href={generateCalendarLink(celeb)}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                className={`px-4 py-1.5 rounded-full text-[10px] md:text-[12px] uppercase tracking-[0.2em] font-semibold transition-all shadow-md active:scale-95 flex items-center gap-1.5 ${t.btnSolid} hover:scale-105`}
+                                                className="px-3 py-1 min-[430px]:px-4 min-[430px]:py-1.5 rounded-full text-[9px] min-[430px]:text-[10px] uppercase font-serif tracking-[0.16em] font-semibold transition-all shadow-sm active:scale-95 flex items-center gap-1 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B]"
                                             >
-                                                <MapPin className="w-2.5 h-2.5" />
-                                                Map
+                                                <Calendar className="w-2.5 h-2.5" />
+                                                Calendar
                                             </a>
-                                        )}
+                                            {celeb.googleMapsUrl && (
+                                                <a
+                                                    href={celeb.googleMapsUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="px-3 py-1 min-[430px]:px-4 min-[430px]:py-1.5 rounded-full text-[9px] min-[430px]:text-[10px] uppercase font-serif tracking-[0.16em] font-semibold transition-all shadow-sm active:scale-95 flex items-center gap-1 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B]"
+                                                >
+                                                    <MapPin className="w-2.5 h-2.5" />
+                                                    Directions
+                                                </a>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             ))}
-                        </div>
-
-                        <div className="mt-5">
-                            <GoldDivider width="w-20" />
                         </div>
                     </div>
                 </div>
@@ -420,7 +435,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
         },
         {
             id: 'sec-2', content: (
-                <div className={`w-[92vw] max-w-md min-h-[82vh] flex flex-col items-center justify-center p-6 rounded-md shadow-2xl relative ${t.cardBg} `}>
+                <div className={`w-[92vw] max-w-md min-h-[82vh] flex flex-col items-center justify-center p-4 min-[430px]:p-5 sm:p-6 rounded-md shadow-2xl relative ${t.cardBg} `}>
                     {/* Paper Texture overlay */}
                     <div
                         className="absolute inset-0 opacity-70 pointer-events-none rounded-md"
@@ -431,49 +446,65 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                         }}
                     />
                     {/* Corner ornaments */}
-                    <CornerOrnament className={`absolute top-3 left-3 w-12 h-12 ${t.ornament}`} />
-                    <CornerOrnament className={`absolute top-3 right-3 w-12 h-12 ${t.ornament} -scale-x-100`} />
-                    <CornerOrnament className={`absolute bottom-3 left-3 w-12 h-12 ${t.ornament} -scale-y-100`} />
-                    <CornerOrnament className={`absolute bottom-3 right-3 w-12 h-12 ${t.ornament} scale-[-1]`} />
+                    <CornerOrnament className={`absolute top-2.5 left-2.5 min-[430px]:top-3 min-[430px]:left-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament}`} />
+                    <CornerOrnament className={`absolute top-2.5 right-2.5 min-[430px]:top-3 min-[430px]:right-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament} -scale-x-100`} />
+                    <CornerOrnament className={`absolute bottom-2.5 left-2.5 min-[430px]:bottom-3 min-[430px]:left-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament} -scale-y-100`} />
+                    <CornerOrnament className={`absolute bottom-2.5 right-2.5 min-[430px]:bottom-3 min-[430px]:right-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament} scale-[-1]`} />
 
                     {/* Double-line gold border */}
-                    <div className={`absolute inset-5 border ${t.border} pointer-events-none`} />
-                    <div className={`absolute inset-[26px] border ${t.border} opacity-50 pointer-events-none`} />
+                    <div className={`absolute inset-3.5 min-[430px]:inset-4 sm:inset-5 border ${t.border} pointer-events-none`} />
+                    <div className={`absolute inset-[18px] min-[430px]:inset-[22px] sm:inset-[26px] border ${t.border} opacity-50 pointer-events-none`} />
 
-                    <div className="relative z-10 flex flex-col items-center w-full h-full pt-4 pb-4">
-                        <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[35vw] md:w-[180px] mb-5 object-contain opacity-80 mix-blend-multiply" />
+                    <div className="relative z-10 flex flex-col items-center justify-center w-full h-full py-2 min-[430px]:py-3 sm:py-4 px-2">
+                        {/* Header Badge */}
+                        <div className="flex flex-col items-center mb-1.5 min-[430px]:mb-2 pointer-events-none">
+                            <img src="/assets/images/logo-plain.svg?v=2" alt="Logo" className="w-[110px] min-[390px]:w-[125px] min-[430px]:w-[145px] sm:w-[160px] object-contain opacity-95" />
+                        </div>
 
-                        <p className={`font-sans uppercase text-2xl md:text-3xl font-bold tracking-[0.2em] mb-4 text-center ${t.textGold}`}>
+                        <p className="font-serif italic text-xs min-[390px]:text-[13px] min-[430px]:text-sm tracking-widest text-center text-[#75162D] opacity-90 mb-0.5">
+                            guidelines & blessings
+                        </p>
+                        <h2 className="font-wonderling uppercase text-xl min-[390px]:text-2xl min-[430px]:text-[28px] sm:text-3xl font-semibold text-center text-[#3B010B] leading-tight mb-1.5">
                             The Celebration
+                        </h2>
+
+                        <GoldDivider width="w-20" />
+
+                        <p className="font-serif italic text-[10.5px] min-[390px]:text-[11.5px] min-[430px]:text-xs text-[#3B010B]/80 text-center max-w-[280px] min-[430px]:max-w-xs mt-1.5 mb-3.5 min-[430px]:mb-4 leading-relaxed">
+                            Everything you need to celebrate with grace, joy, and comfort.
                         </p>
 
                         {/* Double-Bezel card for celebration details */}
-                        <div className="relative p-[1px] w-full max-w-xs bg-[#F2D9A0] shadow-lg">
-                            <div className={`p-5 md:p-6 w-full ${t.cardBg} shadow-[inset_0_1px_1px_rgba(242,217,160,0.3)]`}>
-                                <div className="mb-4">
-                                    <h4 className={`text-[10px] md:text-xs font-sans font-bold uppercase tracking-[0.2em] mb-2 ${t.textGold}`}>
+                        <div className="relative p-[1px] w-full max-w-[310px] min-[390px]:max-w-[330px] min-[430px]:max-w-xs bg-[#F2D9A0] shadow-md rounded-sm">
+                            <div className={`p-4 min-[390px]:p-4.5 min-[430px]:p-5 w-full ${t.cardBg} shadow-[inset_0_1px_1px_rgba(242,217,160,0.3)] flex flex-col items-center`}>
+                                {/* Dress Code Section */}
+                                <div className="w-full flex flex-col items-center mb-3 min-[430px]:mb-3.5">
+                                    <span className="font-serif italic text-xs min-[430px]:text-sm tracking-widest text-[#75162D] font-bold uppercase mb-2">
                                         Dress Code
-                                    </h4>
-                                    <div className="flex flex-col gap-2">
+                                    </span>
+                                    <div className="flex flex-col gap-2 w-full">
                                         {weddingData?.celebrations?.map((celeb: any, idx: number) => (
                                             <div key={idx} className="flex flex-col items-center">
-                                                <span className={`font-sans text-[10px] md:text-xs font-semibold leading-[1.7] uppercase tracking-[0.2em] text-center ${t.textMuted}`}>{celeb.name}</span>
-                                                <p className={`font-sans text-[10px] md:text-xs font-semibold leading-[1.7] text-center ${t.textCream}`}>
-                                                    {celeb.dressCode || "Occasion Ready"}
+                                                <span className="font-wonderling uppercase text-xs min-[430px]:text-sm tracking-wider text-[#3B010B] font-semibold">
+                                                    {celeb.name}
+                                                </span>
+                                                <p className="font-serif italic text-[11px] min-[430px]:text-xs text-[#75162D] font-medium mt-0.5">
+                                                    {celeb.dressCode || "Traditional Elegance"}
                                                 </p>
                                             </div>
                                         ))}
                                     </div>
                                 </div>
 
-                                <GoldDivider width="w-10" />
+                                <GoldDivider width="w-14" />
 
-                                <div className="mt-4">
-                                    <h4 className={`text-[10px] md:text-xs font-sans font-bold uppercase tracking-[0.2em] mb-1.5 text-center ${t.textGold}`}>
+                                {/* Your Presence Section */}
+                                <div className="w-full flex flex-col items-center mt-3 min-[430px]:mt-3.5">
+                                    <span className="font-serif italic text-xs min-[430px]:text-sm tracking-widest text-[#75162D] font-bold uppercase mb-1.5">
                                         Your Presence
-                                    </h4>
-                                    <p className={`font-sans text-[10px] md:text-xs font-semibold leading-[1.7] text-center ${t.textLight}`}>
-                                        {weddingData?.messages?.inviteText || "Please bless us with your presence as we celebrate this beautiful milestone. We look forward to sharing our joy with you."}
+                                    </span>
+                                    <p className="font-serif text-[10.5px] min-[390px]:text-[11px] min-[430px]:text-xs leading-relaxed text-[#3B010B]/85 text-center italic px-1">
+                                        &ldquo;{weddingData?.messages?.inviteText || "Please bless us with your presence as we celebrate this beautiful milestone. We look forward to sharing our joy with you."}&rdquo;
                                     </p>
                                 </div>
                             </div>
@@ -484,7 +515,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
         },
         {
             id: 'sec-3', content: (
-                <div className={`w-[92vw] max-w-md min-h-[82vh] flex flex-col items-center justify-center p-6 rounded-md shadow-2xl relative ${t.cardBg} `}>
+                <div className={`w-[92vw] max-w-md min-h-[82vh] flex flex-col items-center justify-center p-4 min-[430px]:p-5 sm:p-6 rounded-md shadow-2xl relative ${t.cardBg} `}>
                     {/* Paper Texture overlay */}
                     <div
                         className="absolute inset-0 opacity-70 pointer-events-none rounded-md"
@@ -495,60 +526,68 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                         }}
                     />
                     {/* Corner ornaments */}
-                    <CornerOrnament className={`absolute top-3 left-3 w-12 h-12 ${t.ornament}`} />
-                    <CornerOrnament className={`absolute top-3 right-3 w-12 h-12 ${t.ornament} -scale-x-100`} />
-                    <CornerOrnament className={`absolute bottom-3 left-3 w-12 h-12 ${t.ornament} -scale-y-100`} />
-                    <CornerOrnament className={`absolute bottom-3 right-3 w-12 h-12 ${t.ornament} scale-[-1]`} />
+                    <CornerOrnament className={`absolute top-2.5 left-2.5 min-[430px]:top-3 min-[430px]:left-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament}`} />
+                    <CornerOrnament className={`absolute top-2.5 right-2.5 min-[430px]:top-3 min-[430px]:right-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament} -scale-x-100`} />
+                    <CornerOrnament className={`absolute bottom-2.5 left-2.5 min-[430px]:bottom-3 min-[430px]:left-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament} -scale-y-100`} />
+                    <CornerOrnament className={`absolute bottom-2.5 right-2.5 min-[430px]:bottom-3 min-[430px]:right-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament} scale-[-1]`} />
 
                     {/* Double-line gold border */}
-                    <div className={`absolute inset-5 border ${t.border} pointer-events-none`} />
-                    <div className={`absolute inset-[26px] border ${t.border} opacity-50 pointer-events-none`} />
+                    <div className={`absolute inset-3.5 min-[430px]:inset-4 sm:inset-5 border ${t.border} pointer-events-none`} />
+                    <div className={`absolute inset-[18px] min-[430px]:inset-[22px] sm:inset-[26px] border ${t.border} opacity-50 pointer-events-none`} />
 
-                    <div className="relative z-10 flex flex-col items-center w-full h-full pt-4 pb-4">
-                        <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[35vw] md:w-[180px] mb-5 object-contain opacity-80 mix-blend-multiply" />
+                    <div className="relative z-10 flex flex-col items-center justify-center w-full h-full py-2 min-[430px]:py-3 sm:py-4 px-2">
+                        {/* Header Badge */}
+                        <div className="flex flex-col items-center mb-1.5 min-[430px]:mb-2 pointer-events-none">
+                            <img src="/assets/images/logo-plain.svg?v=2" alt="Logo" className="w-[110px] min-[390px]:w-[125px] min-[430px]:w-[145px] sm:w-[160px] object-contain opacity-95" />
+                        </div>
 
-                        <h2 className={`font-sans uppercase text-3xl md:text-4xl font-bold tracking-[0.2em] mb-4 drop-shadow-sm text-center ${t.textGold}`}>Reach Out</h2>
-                        <p className={`font-sans text-[10px] md:text-xs font-semibold leading-[1.7] max-w-xs mb-6 text-center ${t.textMuted}`}>
-                            For any queries or to confirm your presence, please feel free to connect with us.
+                        <p className="font-serif italic text-xs min-[390px]:text-[13px] min-[430px]:text-sm tracking-widest text-center text-[#75162D] opacity-90 mb-0.5">
+                            queries & hospitality
+                        </p>
+                        <h2 className="font-wonderling uppercase text-xl min-[390px]:text-2xl min-[430px]:text-[28px] sm:text-3xl font-semibold text-center text-[#3B010B] leading-tight mb-1.5">
+                            Reach Out
+                        </h2>
+
+                        <GoldDivider width="w-20" />
+
+                        <p className="font-serif italic text-[10.5px] min-[390px]:text-[11.5px] min-[430px]:text-xs text-[#3B010B]/80 text-center max-w-[280px] min-[430px]:max-w-xs mt-1.5 mb-3.5 min-[430px]:mb-4 leading-relaxed">
+                            For any queries or travel assistance, our family is delighted to help.
                         </p>
 
                         {/* Double-Bezel contact card */}
-                        <div className="relative p-[1px] w-full max-w-xs bg-[#F2D9A0] shadow-lg">
-                            <div className={`p-5 md:p-6 w-full ${t.cardBg} shadow-[inset_0_1px_1px_rgba(242,217,160,0.3)] flex flex-col items-center`}>
-                                <h4 className={`text-[10px] md:text-xs font-sans font-bold uppercase tracking-[0.2em] mb-1 text-center ${t.textMuted}`}>
-                                    Contact Person
-                                </h4>
-                                <p className={`font-sans text-base md:text-lg font-bold tracking-[0.1em] mb-3 text-center ${t.textCream}`}>
-                                    {weddingData?.couple?.groom?.name || "Subodh Verma"}
+                        <div className="relative p-[1px] w-full max-w-[310px] min-[390px]:max-w-[330px] min-[430px]:max-w-xs bg-[#F2D9A0] shadow-md rounded-sm">
+                            <div className={`p-4 min-[390px]:p-4.5 min-[430px]:p-5 w-full ${t.cardBg} shadow-[inset_0_1px_1px_rgba(242,217,160,0.3)] flex flex-col items-center`}>
+                                <span className="font-serif italic text-xs min-[430px]:text-sm tracking-widest text-[#75162D] font-bold uppercase mb-1">
+                                    Host & Family Contact
+                                </span>
+                                <p className="font-wonderling uppercase text-base min-[430px]:text-lg font-semibold tracking-wider text-[#3B010B] mb-2.5">
+                                    {weddingData?.couple?.groom?.name ? `MR. ${weddingData.couple.groom.name.toUpperCase()}` : "MR. SUBODH VERMA"}
                                 </p>
 
-                                <GoldDivider width="w-10" />
+                                <GoldDivider width="w-12" />
 
                                 <a
                                     href="tel:8709595001"
-                                    className={`mt-4 px-5 py-2.5 rounded-full text-[11px] md:text-[13px] uppercase tracking-[0.2em] font-semibold transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] shadow-md flex items-center gap-2 ${t.btnSolid} hover:scale-105`}
+                                    className="mt-3.5 px-5 py-2 min-[430px]:py-2.5 rounded-full text-[11px] min-[430px]:text-xs font-serif uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-md flex items-center gap-2 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B] active:scale-95"
                                 >
                                     <Phone className="w-3.5 h-3.5" />
-                                    8709595001
+                                    +91 87095 95001
                                 </a>
                             </div>
                         </div>
 
-                        <div className="mt-6">
-                            <GoldDivider width="w-16" />
-                        </div>
-
-                        <div className="mt-5">
-                            <p className={`font-sans text-[10px] md:text-[11px] font-semibold tracking-widest uppercase text-center ${t.textMuted}`}>
+                        {/* WhatsApp Wishes Section */}
+                        <div className="mt-3.5 min-[430px]:mt-4.5 flex flex-col items-center">
+                            <p className="font-serif uppercase text-[9.5px] min-[430px]:text-[10.5px] font-bold tracking-[0.2em] text-[#3B010B]/75 mb-1">
                                 Share Your Warmest Wishes
                             </p>
                             <a
-                                href={`https://wa.me/${weddingData?.contact?.whatsapp || "918709595001"}?text=${encodeURIComponent("Wishing you a very Happy Anniversary! 🥂")}`}
+                                href={`https://wa.me/${weddingData?.contact?.whatsapp || "918709595001"}?text=${encodeURIComponent("Wishing you a very Happy Wedding celebration! 🥂")}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`inline-block mt-1.5 font-sans text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] border-b border-current pb-0.5 ${t.textGold} hover:opacity-70 transition-opacity duration-300`}
+                                className="font-serif italic text-xs min-[430px]:text-sm text-[#75162D] border-b border-[#75162D]/50 pb-0.5 hover:text-[#3B010B] hover:border-[#3B010B] transition-colors inline-block"
                             >
-                                Send a message →
+                                Send a blessing via WhatsApp →
                             </a>
                         </div>
                     </div>
@@ -557,7 +596,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
         },
         {
             id: 'sec-4', content: (
-                <div className={`w-[92vw] max-w-md min-h-[82vh] flex flex-col items-center justify-center p-6 rounded-md shadow-2xl relative ${t.cardBg} `}>
+                <div className={`w-[92vw] max-w-md min-h-[82vh] flex flex-col items-center justify-center p-4 min-[430px]:p-5 sm:p-6 rounded-md shadow-2xl relative ${t.cardBg} `}>
                     {/* Paper Texture overlay */}
                     <div
                         className="absolute inset-0 opacity-70 pointer-events-none rounded-md"
@@ -568,81 +607,89 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                         }}
                     />
                     {/* Corner ornaments */}
-                    <CornerOrnament className={`absolute top-3 left-3 w-12 h-12 ${t.ornament}`} />
-                    <CornerOrnament className={`absolute top-3 right-3 w-12 h-12 ${t.ornament} -scale-x-100`} />
-                    <CornerOrnament className={`absolute bottom-3 left-3 w-12 h-12 ${t.ornament} -scale-y-100`} />
-                    <CornerOrnament className={`absolute bottom-3 right-3 w-12 h-12 ${t.ornament} scale-[-1]`} />
+                    <CornerOrnament className={`absolute top-2.5 left-2.5 min-[430px]:top-3 min-[430px]:left-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament}`} />
+                    <CornerOrnament className={`absolute top-2.5 right-2.5 min-[430px]:top-3 min-[430px]:right-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament} -scale-x-100`} />
+                    <CornerOrnament className={`absolute bottom-2.5 left-2.5 min-[430px]:bottom-3 min-[430px]:left-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament} -scale-y-100`} />
+                    <CornerOrnament className={`absolute bottom-2.5 right-2.5 min-[430px]:bottom-3 min-[430px]:right-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament} scale-[-1]`} />
 
                     {/* Double-line gold border */}
-                    <div className={`absolute inset-5 border ${t.border} pointer-events-none`} />
-                    <div className={`absolute inset-[26px] border ${t.border} opacity-50 pointer-events-none`} />
+                    <div className={`absolute inset-3.5 min-[430px]:inset-4 sm:inset-5 border ${t.border} pointer-events-none`} />
+                    <div className={`absolute inset-[18px] min-[430px]:inset-[22px] sm:inset-[26px] border ${t.border} opacity-50 pointer-events-none`} />
 
-                    <div className="relative z-10 flex flex-col items-center w-full h-full pt-4 pb-4">
-                        <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[35vw] md:w-[180px] mb-5 object-contain opacity-80 mix-blend-multiply" />
-
-                        <h2 className={`font-sans uppercase text-md md:text-lg font-bold tracking-[0.2em] mb-3 drop-shadow-sm text-center ${t.textGold}`}>Forever Marked in Time</h2>
-                        <p className={`font-sans text-[10px] md:text-xs font-semibold leading-[1.7] max-w-[280px] md:max-w-xs mb-6 text-center ${t.textMuted}`}>
-                            Counting down the days until we celebrate this beautiful milestone together.
-                        </p>
-
-                        <div className={`font-sans uppercase text-xl md:text-2xl font-bold tracking-[0.2em] mb-4 text-center ${t.textCream}`}>
-                            {weddingData?.wedding?.displayDate || "MAY 31ST, 2026"}
+                    <div className="relative z-10 flex flex-col items-center justify-center w-full h-full py-2 min-[430px]:py-3 sm:py-4 px-2">
+                        {/* Header Badge */}
+                        <div className="flex flex-col items-center mb-1.5 min-[430px]:mb-2 pointer-events-none">
+                            <img src="/assets/images/logo-plain.svg?v=2" alt="Logo" className="w-[95px] min-[390px]:w-[110px] min-[430px]:w-[125px] object-contain opacity-95" />
                         </div>
+
+                        <p className="font-serif italic text-xs min-[390px]:text-[13px] min-[430px]:text-sm tracking-widest text-center text-[#75162D] opacity-90 mb-0.5">
+                            the countdown
+                        </p>
+                        <h2 className="font-wonderling uppercase text-lg min-[390px]:text-xl min-[430px]:text-2xl font-semibold text-center text-[#3B010B] leading-tight mb-1">
+                            Forever Marked in Time
+                        </h2>
+
+                        <span className="font-serif uppercase text-xs min-[390px]:text-[13px] min-[430px]:text-sm tracking-[0.2em] font-bold text-[#75162D] mb-1.5">
+                            {weddingData?.wedding?.displayDate || "DECEMBER 11th, 2026"}
+                        </span>
 
                         <GoldDivider width="w-16" />
 
+                        <p className="font-serif italic text-[10.5px] min-[390px]:text-[11.5px] min-[430px]:text-xs text-[#3B010B]/75 text-center max-w-[260px] min-[430px]:max-w-xs mt-1.5 mb-2.5 min-[430px]:mb-3 leading-relaxed">
+                            Counting down the moments until we celebrate our auspicious union.
+                        </p>
+
                         {/* Double-Bezel countdown frame */}
-                        <div className="relative mt-4 p-[1px] w-full max-w-xs bg-[#F2D9A0] shadow-lg">
-                            <div className={`w-full h-full p-4 flex flex-col items-center justify-center ${t.cardBg} shadow-[inset_0_1px_1px_rgba(242,217,160,0.3)]`}>
+                        <div className="relative p-[1px] w-full max-w-[280px] min-[390px]:max-w-[300px] min-[430px]:max-w-xs bg-[#F2D9A0] shadow-md rounded-sm mb-2.5 min-[430px]:mb-3">
+                            <div className={`w-full py-2 px-3 min-[430px]:py-2.5 min-[430px]:px-4 flex flex-col items-center justify-center ${t.cardBg} shadow-[inset_0_1px_1px_rgba(242,217,160,0.3)]`}>
                                 <CountdownTimer
-                                    targetDate={weddingData?.wedding?.date || "2026-05-31T19:00:00"}
-                                    textMainClass={t.textCream}
-                                    textMutedClass={t.textMuted}
+                                    targetDate={weddingData?.wedding?.date || "2026-12-11T19:00:00"}
+                                    textMainClass="text-[#3B010B]"
+                                    textMutedClass="text-[#75162D]"
                                 />
                             </div>
                         </div>
 
-                        <h3 className={`font-script text-2xl md:text-3xl mt-6 mb-16 text-center ${t.textCream}`}>
+                        <p className="font-hallbothy text-2xl min-[390px]:text-[28px] min-[430px]:text-3xl text-[#75162D] mb-2 min-[430px]:mb-2.5 leading-none text-center">
                             See you there
-                        </h3>
-                    </div>
+                        </p>
 
-                    {/* HALF SEAL FOR CLOSING — preserved from original */}
-                    <div className="absolute bottom-[65px] left-1/2 -translate-x-1/2 z-50">
-                        <button
-                            onClick={onClose}
-                            className="relative flex items-center justify-center w-28 h-28 md:w-36 md:h-36 rounded-full group cursor-pointer hover:scale-[1.03] active:scale-[0.97] transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
-                        >
-                            {/* Warm gold aura */}
-                            <div className="absolute inset-x-[-5%] inset-y-[-5%] -z-10 bg-[#F2D9A0] rounded-full mix-blend-screen animate-royal-glow" />
+                        {/* Integrated Reset Seal Button */}
+                        <div className="flex flex-col items-center mt-10 min-[430px]:mt-1.5 z-30">
+                            <button
+                                onClick={onClose}
+                                className="relative flex items-center justify-center w-18 h-18 min-[390px]:w-20 min-[390px]:h-20 min-[430px]:w-22 min-[430px]:h-22 rounded-full group cursor-pointer hover:scale-[1.04] active:scale-[0.96] transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
+                            >
+                                {/* Warm gold aura */}
+                                <div className="absolute inset-x-[-8%] inset-y-[-8%] -z-10 bg-[#F2D9A0] rounded-full mix-blend-screen animate-royal-glow" />
+                                <div className="absolute inset-[-12px] min-[430px]:inset-[-15px] -z-10 border border-[#F2D9A0]/50 rounded-full pointer-events-none" />
 
-                            <div className="absolute inset-[-30px] md:inset-[-40px] -z-10 border border-[#F2D9A0]/50 rounded-full pointer-events-none" />
+                                <img
+                                    src="/assets/images/seal.png"
+                                    alt="Close Envelope"
+                                    className="w-full h-full object-contain pointer-events-none drop-shadow-md z-10 relative"
+                                />
 
-                            <img
-                                src="/assets/images/seal.png"
-                                alt="Close Envelope"
-                                className="w-full h-full object-contain pointer-events-none drop-shadow-md z-10 relative"
-                            />
-
-                            {/* Circular instruction text */}
-                            <div className="absolute inset-[-20px] md:inset-[-25px] z-0 pointer-events-none transition-opacity duration-1000 opacity-70 group-hover:opacity-100">
-                                <svg viewBox="0 0 200 200" className="w-full h-full animate-spin-slow origin-center overflow-visible">
-                                    <path
-                                        id="closeCirclePath"
-                                        d="M 100, 100 m -85, 0 a 85,85 0 1,1 170,0 a 85,85 0 1,1 -170,0"
-                                        fill="none"
-                                    />
-                                    <text className="fill-[#75162D] text-xs md:text-sm font-bold uppercase tracking-[0.2em] pointer-events-none">
-                                        <textPath href="#closeCirclePath" startOffset="25%" textAnchor="middle">
-                                            • Press here to reset •
-                                        </textPath>
-                                        <textPath href="#closeCirclePath" startOffset="75%" textAnchor="middle">
-                                            • Press here to reset •
-                                        </textPath>
-                                    </text>
-                                </svg>
-                            </div>
-                        </button>
+                                {/* Circular instruction text */}
+                                <div className="absolute inset-[-10px] min-[430px]:inset-[-13px] z-0 pointer-events-none transition-opacity duration-1000 opacity-70 group-hover:opacity-100">
+                                    <svg viewBox="0 0 200 200" className="w-full h-full animate-spin-slow origin-center overflow-visible">
+                                        <path
+                                            id="closeCirclePath"
+                                            d="M 100, 100 m -85, 0 a 85,85 0 1,1 170,0 a 85,85 0 1,1 -170,0"
+                                            fill="none"
+                                        />
+                                        <text className="fill-[#75162D] text-xs font-serif font-bold uppercase tracking-[0.2em] pointer-events-none">
+                                            <textPath href="#closeCirclePath" startOffset="25%" textAnchor="middle">
+                                                • Press here to reset •
+                                            </textPath>
+                                            <textPath href="#closeCirclePath" startOffset="75%" textAnchor="middle">
+                                                • Press here to reset •
+                                            </textPath>
+                                        </text>
+                                    </svg>
+                                </div>
+                            </button>
+                        </div>
                     </div>
                 </div>
             )
