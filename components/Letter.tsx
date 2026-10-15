@@ -567,11 +567,11 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                                 <GoldDivider width="w-12" />
 
                                 <a
-                                    href="tel:8709595001"
+                                    href={`tel:${weddingData?.contact?.whatsapp}`}
                                     className="mt-3.5 px-5 py-2 min-[430px]:py-2.5 rounded-full text-[11px] min-[430px]:text-xs font-serif uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-md flex items-center gap-2 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B] active:scale-95"
                                 >
                                     <Phone className="w-3.5 h-3.5" />
-                                    +91 87095 95001
+                                    +91 {weddingData?.contact?.whatsapp}
                                 </a>
                             </div>
                         </div>
@@ -582,7 +582,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                                 Share Your Warmest Wishes
                             </p>
                             <a
-                                href={`https://wa.me/${weddingData?.contact?.whatsapp || "918709595001"}?text=${encodeURIComponent("Wishing you a very Happy Wedding celebration! 🥂")}`}
+                                href={`https://wa.me/${weddingData?.contact?.whatsapp || "919097785207"}?text=${encodeURIComponent("Wishing you a very Happy Wedding celebration! 🥂")}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="font-serif italic text-xs min-[430px]:text-sm text-[#75162D] border-b border-[#75162D]/50 pb-0.5 hover:text-[#3B010B] hover:border-[#3B010B] transition-colors inline-block"
