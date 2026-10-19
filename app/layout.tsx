@@ -1,4 +1,4 @@
-import { Cormorant_Garamond, Great_Vibes, Montserrat, Playfair_Display, Geist } from "next/font/google";
+import { Cormorant_Garamond, Great_Vibes, Montserrat, Playfair_Display } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -26,7 +26,11 @@ const greatVibes = Great_Vibes({
   weight: "400",
 });
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const montserrat = Montserrat({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+});
 
 const playfair = Playfair_Display({
   variable: "--font-headline",
@@ -53,7 +57,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", cormorant.variable, greatVibes.variable, playfair.variable, "font-sans", geist.variable, wonderling.variable, hallbothy.variable)}
+      className={cn("h-full", "antialiased", cormorant.variable, greatVibes.variable, playfair.variable, "font-sans", montserrat.variable, wonderling.variable, hallbothy.variable)}
     >
       <body className="min-h-full flex flex-col font-sans bg-black text-[#F5E6C8] overflow-hidden">{children}</body>
     </html>

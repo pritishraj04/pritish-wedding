@@ -281,15 +281,15 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                         <div className="flex flex-col items-center w-full mb-3 min-[390px]:mb-3.5 min-[430px]:mb-5 sm:mb-6">
                             {/* Date Row with vertical line dividers */}
                             <div className="flex items-center justify-center">
-                                <span className={`font-serif uppercase text-xs min-[390px]:text-[13px] min-[430px]:text-sm sm:text-base tracking-[0.16em] min-[430px]:tracking-[0.22em] sm:tracking-[0.25em] font-bold ${t.textCream}`}>
+                                <span className={`font-sans uppercase text-xs min-[390px]:text-[13px] min-[430px]:text-sm sm:text-base tracking-[0.16em] min-[430px]:tracking-[0.22em] sm:tracking-[0.25em] font-medium ${t.textCream}`}>
                                     {displayMonth.toUpperCase()}
                                 </span>
                                 <span className="w-[1.5px] h-4 min-[390px]:h-4.5 min-[430px]:h-5 sm:h-6 bg-[#75162D]/50 mx-2 min-[390px]:mx-2.5 min-[430px]:mx-3 sm:mx-3.5" />
-                                <span className={`font-serif text-2xl min-[390px]:text-[26px] min-[430px]:text-3xl sm:text-4xl font-bold ${t.textCream} leading-none tracking-normal px-0.5`}>
+                                <span className={`font-sans text-2xl min-[390px]:text-[26px] min-[430px]:text-3xl sm:text-4xl font-medium ${t.textCream} leading-none tracking-normal px-0.5`}>
                                     {displayDay}
                                 </span>
                                 <span className="w-[1.5px] h-4 min-[390px]:h-4.5 min-[430px]:h-5 sm:h-6 bg-[#75162D]/50 mx-2 min-[390px]:mx-2.5 min-[430px]:mx-3 sm:mx-3.5" />
-                                <span className={`font-serif uppercase text-xs min-[390px]:text-[13px] min-[430px]:text-sm sm:text-base tracking-[0.16em] min-[430px]:tracking-[0.22em] sm:tracking-[0.25em] font-bold ${t.textCream}`}>
+                                <span className={`font-sans uppercase text-xs min-[390px]:text-[13px] min-[430px]:text-sm sm:text-base tracking-[0.16em] min-[430px]:tracking-[0.22em] sm:tracking-[0.25em] font-medium ${t.textCream}`}>
                                     {displayYear}
                                 </span>
                             </div>
@@ -366,7 +366,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                     <div className="relative z-10 flex flex-col items-center justify-center w-full h-full py-2 min-[430px]:py-3 sm:py-4 px-2">
                         {/* Header Badge */}
                         <div className="flex flex-col items-center mb-1.5 min-[430px]:mb-2 pointer-events-none">
-                            <img src="/assets/images/logo-plain.svg?v=2" alt="Logo" className="w-[110px] min-[390px]:w-[125px] min-[430px]:w-[145px] sm:w-[160px] object-contain opacity-95" />
+                            <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[145px] min-[390px]:w-[165px] min-[430px]:w-[190px] sm:w-[210px] object-contain opacity-95" />
                         </div>
 
                         {/* Card Title */}
@@ -384,47 +384,48 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                         </p>
 
                         {/* Celebrations Tiles */}
-                        <div className="flex flex-col gap-2.5 min-[390px]:gap-3 min-[430px]:gap-4 w-full max-w-[310px] min-[390px]:max-w-[330px] min-[430px]:max-w-sm">
+                        <div className="flex flex-col gap-2.5 min-[390px]:gap-3 min-[430px]:gap-3.5 w-full max-w-[310px] min-[390px]:max-w-[330px] min-[430px]:max-w-sm">
                             {weddingData?.celebrations?.map((celeb: any, idx: number) => (
-                                <div key={idx} className="relative p-[1px] w-full bg-[#F2D9A0] shadow-sm rounded-sm">
-                                    <div className={`p-2.5 min-[390px]:p-3 min-[430px]:p-3.5 w-full ${t.cardBg} shadow-[inset_0_1px_1px_rgba(242,217,160,0.3)] flex flex-col items-center gap-0.5`}>
-                                        <h4 className="font-wonderling uppercase text-xs min-[390px]:text-sm min-[430px]:text-base font-semibold tracking-wider text-[#75162D]">
-                                            {celeb.name}
-                                        </h4>
-                                        <div className="flex items-center justify-center gap-2 mt-0.5">
-                                            <span className="font-serif uppercase text-[10px] min-[390px]:text-[11px] min-[430px]:text-xs tracking-[0.16em] font-bold text-[#3B010B]">
-                                                {celeb.date}
-                                            </span>
-                                            <span className="w-1 h-1 rounded-full bg-[#75162D]/60" />
-                                            <span className="font-serif text-[10px] min-[390px]:text-[11px] min-[430px]:text-xs font-semibold text-[#3B010B]/80">
-                                                {celeb.time}
-                                            </span>
-                                        </div>
-                                        <p className="font-serif uppercase text-[9px] min-[390px]:text-[10px] min-[430px]:text-[11px] tracking-wider text-[#3B010B]/75 text-center mt-0.5 leading-snug">
-                                            {celeb.venueTitle}
-                                        </p>
-                                        <div className="flex gap-2.5 mt-2">
+                                <div
+                                    key={idx}
+                                    className="w-full bg-[#FFFDF8]/70 backdrop-blur-[2px] border border-[#A68A48]/35 rounded-lg p-2.5 min-[390px]:p-3 min-[430px]:p-3.5 flex flex-col items-center gap-0.5 shadow-[0_2px_8px_rgba(59,1,11,0.04)]"
+                                >
+                                    <h4 className="font-wonderling uppercase text-xs min-[390px]:text-sm min-[430px]:text-base font-semibold tracking-wider text-[#75162D]">
+                                        {celeb.name}
+                                    </h4>
+                                    <div className="flex items-center justify-center gap-2 mt-0.5">
+                                        <span className="font-sans uppercase text-[10px] min-[390px]:text-[11px] min-[430px]:text-xs tracking-[0.16em] font-medium text-[#3B010B]">
+                                            {celeb.date}
+                                        </span>
+                                        <span className="w-1 h-1 rounded-full bg-[#75162D]/60" />
+                                        <span className="font-sans text-[10px] min-[390px]:text-[11px] min-[430px]:text-xs font-medium text-[#3B010B]/80">
+                                            {celeb.time}
+                                        </span>
+                                    </div>
+                                    <p className="font-serif uppercase text-[9px] min-[390px]:text-[10px] min-[430px]:text-[11px] tracking-wider text-[#3B010B]/85 text-center mt-0.5 leading-snug">
+                                        {celeb.venueTitle}
+                                    </p>
+                                    <div className="flex gap-2.5 mt-2">
+                                        <a
+                                            href={generateCalendarLink(celeb)}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="px-3 py-1 min-[430px]:px-4 min-[430px]:py-1.5 rounded-full text-[9px] min-[430px]:text-[10px] uppercase font-serif tracking-[0.16em] font-semibold transition-all shadow-sm active:scale-95 flex items-center gap-1 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B]"
+                                        >
+                                            <Calendar className="w-2.5 h-2.5" />
+                                            Calendar
+                                        </a>
+                                        {celeb.googleMapsUrl && (
                                             <a
-                                                href={generateCalendarLink(celeb)}
+                                                href={celeb.googleMapsUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="px-3 py-1 min-[430px]:px-4 min-[430px]:py-1.5 rounded-full text-[9px] min-[430px]:text-[10px] uppercase font-serif tracking-[0.16em] font-semibold transition-all shadow-sm active:scale-95 flex items-center gap-1 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B]"
                                             >
-                                                <Calendar className="w-2.5 h-2.5" />
-                                                Calendar
+                                                <MapPin className="w-2.5 h-2.5" />
+                                                Directions
                                             </a>
-                                            {celeb.googleMapsUrl && (
-                                                <a
-                                                    href={celeb.googleMapsUrl}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="px-3 py-1 min-[430px]:px-4 min-[430px]:py-1.5 rounded-full text-[9px] min-[430px]:text-[10px] uppercase font-serif tracking-[0.16em] font-semibold transition-all shadow-sm active:scale-95 flex items-center gap-1 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B]"
-                                                >
-                                                    <MapPin className="w-2.5 h-2.5" />
-                                                    Directions
-                                                </a>
-                                            )}
-                                        </div>
+                                        )}
                                     </div>
                                 </div>
                             ))}
@@ -458,7 +459,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                     <div className="relative z-10 flex flex-col items-center justify-center w-full h-full py-2 min-[430px]:py-3 sm:py-4 px-2">
                         {/* Header Badge */}
                         <div className="flex flex-col items-center mb-1.5 min-[430px]:mb-2 pointer-events-none">
-                            <img src="/assets/images/logo-plain.svg?v=2" alt="Logo" className="w-[110px] min-[390px]:w-[125px] min-[430px]:w-[145px] sm:w-[160px] object-contain opacity-95" />
+                            <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[145px] min-[390px]:w-[165px] min-[430px]:w-[190px] sm:w-[210px] object-contain opacity-95" />
                         </div>
 
                         <p className="font-serif italic text-xs min-[390px]:text-[13px] min-[430px]:text-sm tracking-widest text-center text-[#75162D] opacity-90 mb-0.5">
@@ -474,39 +475,37 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                             Everything you need to celebrate with grace, joy, and comfort.
                         </p>
 
-                        {/* Double-Bezel card for celebration details */}
-                        <div className="relative p-[1px] w-full max-w-[310px] min-[390px]:max-w-[330px] min-[430px]:max-w-xs bg-[#F2D9A0] shadow-md rounded-sm">
-                            <div className={`p-4 min-[390px]:p-4.5 min-[430px]:p-5 w-full ${t.cardBg} shadow-[inset_0_1px_1px_rgba(242,217,160,0.3)] flex flex-col items-center`}>
-                                {/* Dress Code Section */}
-                                <div className="w-full flex flex-col items-center mb-3 min-[430px]:mb-3.5">
-                                    <span className="font-serif italic text-xs min-[430px]:text-sm tracking-widest text-[#75162D] font-bold uppercase mb-2">
-                                        Dress Code
-                                    </span>
-                                    <div className="flex flex-col gap-2 w-full">
-                                        {weddingData?.celebrations?.map((celeb: any, idx: number) => (
-                                            <div key={idx} className="flex flex-col items-center">
-                                                <span className="font-wonderling uppercase text-xs min-[430px]:text-sm tracking-wider text-[#3B010B] font-semibold">
-                                                    {celeb.name}
-                                                </span>
-                                                <p className="font-serif italic text-[11px] min-[430px]:text-xs text-[#75162D] font-medium mt-0.5">
-                                                    {celeb.dressCode || "Traditional Elegance"}
-                                                </p>
-                                            </div>
-                                        ))}
-                                    </div>
+                        {/* Celebration details card */}
+                        <div className="w-full max-w-[310px] min-[390px]:max-w-[330px] min-[430px]:max-w-xs bg-[#FFFDF8]/70 backdrop-blur-[2px] border border-[#A68A48]/35 rounded-lg p-3.5 min-[390px]:p-4 min-[430px]:p-4.5 flex flex-col items-center shadow-[0_2px_8px_rgba(59,1,11,0.04)]">
+                            {/* Dress Code Section */}
+                            <div className="w-full flex flex-col items-center mb-2.5 min-[430px]:mb-3">
+                                <span className="font-serif italic text-xs min-[430px]:text-sm tracking-widest text-[#75162D] font-bold uppercase mb-1.5">
+                                    Dress Code
+                                </span>
+                                <div className="flex flex-col gap-1.5 w-full">
+                                    {weddingData?.celebrations?.map((celeb: any, idx: number) => (
+                                        <div key={idx} className="flex flex-col items-center">
+                                            <span className="font-wonderling uppercase text-xs min-[430px]:text-sm tracking-wider text-[#3B010B] font-semibold">
+                                                {celeb.name}
+                                            </span>
+                                            <p className="font-serif italic text-[11px] min-[430px]:text-xs text-[#75162D] font-medium mt-0.5">
+                                                {celeb.dressCode || "Traditional Elegance"}
+                                            </p>
+                                        </div>
+                                    ))}
                                 </div>
+                            </div>
 
-                                <GoldDivider width="w-14" />
+                            <GoldDivider width="w-14" />
 
-                                {/* Your Presence Section */}
-                                <div className="w-full flex flex-col items-center mt-3 min-[430px]:mt-3.5">
-                                    <span className="font-serif italic text-xs min-[430px]:text-sm tracking-widest text-[#75162D] font-bold uppercase mb-1.5">
-                                        Your Presence
-                                    </span>
-                                    <p className="font-serif text-[10.5px] min-[390px]:text-[11px] min-[430px]:text-xs leading-relaxed text-[#3B010B]/85 text-center italic px-1">
-                                        &ldquo;{weddingData?.messages?.inviteText || "Please bless us with your presence as we celebrate this beautiful milestone. We look forward to sharing our joy with you."}&rdquo;
-                                    </p>
-                                </div>
+                            {/* Your Presence Section */}
+                            <div className="w-full flex flex-col items-center mt-2.5 min-[430px]:mt-3">
+                                <span className="font-serif italic text-xs min-[430px]:text-sm tracking-widest text-[#75162D] font-bold uppercase mb-1">
+                                    Your Presence
+                                </span>
+                                <p className="font-serif text-[10.5px] min-[390px]:text-[11px] min-[430px]:text-xs leading-relaxed text-[#3B010B]/90 text-center italic px-1">
+                                    &ldquo;{weddingData?.messages?.inviteText || "Please bless us with your presence as we celebrate this beautiful milestone. We look forward to sharing our joy with you."}&rdquo;
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -538,7 +537,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                     <div className="relative z-10 flex flex-col items-center justify-center w-full h-full py-2 min-[430px]:py-3 sm:py-4 px-2">
                         {/* Header Badge */}
                         <div className="flex flex-col items-center mb-1.5 min-[430px]:mb-2 pointer-events-none">
-                            <img src="/assets/images/logo-plain.svg?v=2" alt="Logo" className="w-[110px] min-[390px]:w-[125px] min-[430px]:w-[145px] sm:w-[160px] object-contain opacity-95" />
+                            <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[145px] min-[390px]:w-[165px] min-[430px]:w-[190px] sm:w-[210px] object-contain opacity-95" />
                         </div>
 
                         <p className="font-serif italic text-xs min-[390px]:text-[13px] min-[430px]:text-sm tracking-widest text-center text-[#75162D] opacity-90 mb-0.5">
@@ -554,26 +553,24 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                             For any queries or travel assistance, our family is delighted to help.
                         </p>
 
-                        {/* Double-Bezel contact card */}
-                        <div className="relative p-[1px] w-full max-w-[310px] min-[390px]:max-w-[330px] min-[430px]:max-w-xs bg-[#F2D9A0] shadow-md rounded-sm">
-                            <div className={`p-4 min-[390px]:p-4.5 min-[430px]:p-5 w-full ${t.cardBg} shadow-[inset_0_1px_1px_rgba(242,217,160,0.3)] flex flex-col items-center`}>
-                                <span className="font-serif italic text-xs min-[430px]:text-sm tracking-widest text-[#75162D] font-bold uppercase mb-1">
-                                    Host & Family Contact
-                                </span>
-                                <p className="font-wonderling uppercase text-base min-[430px]:text-lg font-semibold tracking-wider text-[#3B010B] mb-2.5">
-                                    {weddingData?.couple?.groom?.name ? `MR. ${weddingData.couple.groom.name.toUpperCase()}` : "MR. SUBODH VERMA"}
-                                </p>
+                        {/* Contact card */}
+                        <div className="w-full max-w-[310px] min-[390px]:max-w-[330px] min-[430px]:max-w-xs bg-[#FFFDF8]/70 backdrop-blur-[2px] border border-[#A68A48]/35 rounded-lg p-3.5 min-[390px]:p-4 min-[430px]:p-4.5 flex flex-col items-center shadow-[0_2px_8px_rgba(59,1,11,0.04)]">
+                            <span className="font-serif italic text-xs min-[430px]:text-sm tracking-widest text-[#75162D] font-bold uppercase mb-1">
+                                Host & Family Contact
+                            </span>
+                            <p className="font-wonderling uppercase text-base min-[430px]:text-lg font-semibold tracking-wider text-[#3B010B] mb-2.5">
+                                {weddingData?.couple?.groom?.name ? `MR. ${weddingData.couple.groom.name.toUpperCase()}` : "MR. SUBODH VERMA"}
+                            </p>
 
-                                <GoldDivider width="w-12" />
+                            <GoldDivider width="w-12" />
 
-                                <a
-                                    href={`tel:${weddingData?.contact?.whatsapp}`}
-                                    className="mt-3.5 px-5 py-2 min-[430px]:py-2.5 rounded-full text-[11px] min-[430px]:text-xs font-serif uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-md flex items-center gap-2 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B] active:scale-95"
-                                >
-                                    <Phone className="w-3.5 h-3.5" />
-                                    +91 {weddingData?.contact?.whatsapp}
-                                </a>
-                            </div>
+                            <a
+                                href={`tel:${weddingData?.contact?.whatsapp}`}
+                                className="mt-3 px-5 py-2 min-[430px]:py-2.5 rounded-full text-[11px] min-[430px]:text-xs font-serif uppercase tracking-[0.2em] font-semibold transition-all duration-300 shadow-sm flex items-center gap-2 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B] active:scale-95"
+                            >
+                                <Phone className="w-3.5 h-3.5" />
+                                +91 {weddingData?.contact?.whatsapp}
+                            </a>
                         </div>
 
                         {/* WhatsApp Wishes Section */}
@@ -619,7 +616,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                     <div className="relative z-10 flex flex-col items-center justify-center w-full h-full py-2 min-[430px]:py-3 sm:py-4 px-2">
                         {/* Header Badge */}
                         <div className="flex flex-col items-center mb-1.5 min-[430px]:mb-2 pointer-events-none">
-                            <img src="/assets/images/logo-plain.svg?v=2" alt="Logo" className="w-[95px] min-[390px]:w-[110px] min-[430px]:w-[125px] object-contain opacity-95" />
+                            <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[145px] min-[390px]:w-[165px] min-[430px]:w-[190px] sm:w-[210px] object-contain opacity-95" />
                         </div>
 
                         <p className="font-serif italic text-xs min-[390px]:text-[13px] min-[430px]:text-sm tracking-widest text-center text-[#75162D] opacity-90 mb-0.5">
@@ -629,7 +626,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                             Forever Marked in Time
                         </h2>
 
-                        <span className="font-serif uppercase text-xs min-[390px]:text-[13px] min-[430px]:text-sm tracking-[0.2em] font-bold text-[#75162D] mb-1.5">
+                        <span className="font-sans uppercase text-xs min-[390px]:text-[13px] min-[430px]:text-sm tracking-[0.2em] font-medium text-[#75162D] mb-1.5">
                             {weddingData?.wedding?.displayDate || "DECEMBER 11th, 2026"}
                         </span>
 
@@ -639,15 +636,13 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                             Counting down the moments until we celebrate our auspicious union.
                         </p>
 
-                        {/* Double-Bezel countdown frame */}
-                        <div className="relative p-[1px] w-full max-w-[280px] min-[390px]:max-w-[300px] min-[430px]:max-w-xs bg-[#F2D9A0] shadow-md rounded-sm mb-2.5 min-[430px]:mb-3">
-                            <div className={`w-full py-2 px-3 min-[430px]:py-2.5 min-[430px]:px-4 flex flex-col items-center justify-center ${t.cardBg} shadow-[inset_0_1px_1px_rgba(242,217,160,0.3)]`}>
-                                <CountdownTimer
-                                    targetDate={weddingData?.wedding?.date || "2026-12-11T19:00:00"}
-                                    textMainClass="text-[#3B010B]"
-                                    textMutedClass="text-[#75162D]"
-                                />
-                            </div>
+                        {/* Countdown frame */}
+                        <div className="w-full max-w-[270px] min-[390px]:max-w-[290px] min-[430px]:max-w-[310px] bg-[#FFFDF8]/70 backdrop-blur-[2px] border border-[#A68A48]/35 rounded-lg py-2 px-2.5 min-[430px]:py-2.5 min-[430px]:px-3.5 flex flex-col items-center justify-center shadow-[0_2px_8px_rgba(59,1,11,0.04)] mb-2.5 min-[430px]:mb-3">
+                            <CountdownTimer
+                                targetDate={weddingData?.wedding?.date || "2026-12-11T19:00:00"}
+                                textMainClass="text-[#3B010B]"
+                                textMutedClass="text-[#75162D]"
+                            />
                         </div>
 
                         <p className="font-hallbothy text-2xl min-[390px]:text-[28px] min-[430px]:text-3xl text-[#75162D] mb-2 min-[430px]:mb-2.5 leading-none text-center">

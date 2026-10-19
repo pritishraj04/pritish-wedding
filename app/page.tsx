@@ -8,12 +8,12 @@ export async function generateMetadata() {
 
   return {
     metadataBase: new URL(baseUrl),
-    title: `${weddingData.couple.groom.name} & ${weddingData.couple.bride.name} ${weddingData.eventType || 'Wedding'}`,
+    title: `${weddingData.couple.groom.name} weds ${weddingData.couple.bride.name}`,
     description: weddingData.messages.inviteText,
     openGraph: {
       type: 'website',
       url: baseUrl,
-      title: `${weddingData.couple.groom.name} & ${weddingData.couple.bride.name} ${weddingData.eventType || 'Wedding'}`,
+      title: `${weddingData.couple.groom.name} weds ${weddingData.couple.bride.name}`,
       description: weddingData.messages.inviteText,
       images: [
         {
@@ -26,7 +26,7 @@ export async function generateMetadata() {
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${weddingData.couple.groom.name} & ${weddingData.couple.bride.name} ${weddingData.eventType || 'Wedding'} Invitation`,
+      title: `${weddingData.couple.groom.name} weds ${weddingData.couple.bride.name}`,
       description: weddingData.messages.inviteText,
       images: [imageUrl],
     }
