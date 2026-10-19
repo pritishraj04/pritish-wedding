@@ -4,7 +4,7 @@ import weddingData from "@/util/data/wedding-data.json";
 
 export async function generateMetadata() {
   const baseUrl = weddingData.websiteUrl.endsWith('/') ? weddingData.websiteUrl.slice(0, -1) : weddingData.websiteUrl;
-  const imageUrl = `${baseUrl}/assets/images/social-share.png`;
+  const imageUrl = `${baseUrl}/assets/images/social-share.jpg`;
 
   return {
     metadataBase: new URL(baseUrl),
