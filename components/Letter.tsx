@@ -54,10 +54,15 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
         ornament: 'text-[#F2D9A0]',
     };
 
-    const groomName = weddingData?.couple?.groom?.name || 'Subodh Verma';
-    const brideName = weddingData?.couple?.bride?.name || 'Shweta Verma';
+    const groomName = weddingData?.couple?.groom?.name || 'Pritish Raj';
+    const brideName = weddingData?.couple?.bride?.name || 'Simran Singh';
     const groomFirstName = groomName.split(' ')[0];
     const brideFirstName = brideName.split(' ')[0];
+
+    const groomMother = weddingData?.couple?.groom?.parents?.mother || 'Premlata';
+    const groomFather = weddingData?.couple?.groom?.parents?.father || 'Pramod Kumar';
+    const brideMother = weddingData?.couple?.bride?.parents?.mother || 'Ranju Singh';
+    const brideFather = weddingData?.couple?.bride?.parents?.father || 'Brajesh Singh';
 
     const displayDateStr = weddingData?.wedding?.displayDate || "MAY 31st, 2026";
     const dateParts = displayDateStr.split(' ');
@@ -489,38 +494,42 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
 
                         {/* Celebration details - structured 2x2 grid & quote */}
                         <div className="w-full max-w-[295px] min-[390px]:max-w-[315px] flex flex-col items-center mt-2">
-                            {/* Dress Code Section */}
+                            {/* Cordially Invited By — Parents & Couple */}
                             <div className="w-full flex flex-col items-center mb-2">
-                                <span className="font-sans uppercase text-[9.5px] min-[430px]:text-[10px] tracking-[0.2em] font-medium text-[#75162D] mb-1.5">
-                                    Dress Code &amp; Attire
+                                <span className="font-sans uppercase text-[9px] min-[430px]:text-[9.5px] tracking-[0.2em] font-medium text-[#75162D] mb-1.5">
+                                    Cordially Invited By
                                 </span>
-                                <div className="grid grid-cols-2 gap-x-2.5 gap-y-1.5 w-full text-center">
-                                    {weddingData?.celebrations?.map((celeb: any, idx: number) => (
-                                        <div key={idx} className="flex flex-col items-center bg-[#75162D]/[0.03] border border-[#A68A48]/20 rounded px-1.5 py-1">
-                                            <span className="font-sans text-[10px] min-[390px]:text-[10.5px] tracking-wide text-[#2A0007] font-medium">
-                                                {celeb.shortName || celeb.name}
-                                            </span>
-                                            <p className="font-serif italic text-[9.5px] min-[390px]:text-[10px] text-[#5A2D35] font-normal mt-0.5">
-                                                {celeb.dressCode || "Traditional"}
-                                            </p>
-                                        </div>
-                                    ))}
+                                <div className="grid grid-cols-2 gap-2 w-full text-center">
+                                    {/* Groom's Parents */}
+                                    <div className="flex flex-col items-center bg-[#75162D]/[0.025] border border-[#A68A48]/25 rounded-md py-2 px-1.5 shadow-xs">
+                                        <span className="font-sans uppercase text-[8px] min-[390px]:text-[8.5px] tracking-[0.14em] text-[#75162D] font-medium block">
+                                            Groom&apos;s Parents
+                                        </span>
+                                        <p className="font-serif italic text-[11px] min-[390px]:text-[11.5px] text-[#2A0007] font-medium mt-0.5 leading-snug">
+                                            {groomMother} &amp; {groomFather}
+                                        </p>
+                                    </div>
+
+                                    {/* Bride's Parents */}
+                                    <div className="flex flex-col items-center bg-[#75162D]/[0.025] border border-[#A68A48]/25 rounded-md py-2 px-1.5 shadow-xs">
+                                        <span className="font-sans uppercase text-[8px] min-[390px]:text-[8.5px] tracking-[0.14em] text-[#75162D] font-medium block">
+                                            Bride&apos;s Parents
+                                        </span>
+                                        <p className="font-serif italic text-[11px] min-[390px]:text-[11.5px] text-[#2A0007] font-medium mt-0.5 leading-snug">
+                                            {brideMother} &amp; {brideFather}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className="w-20 min-[430px]:w-28 h-px bg-gradient-to-r from-transparent via-[#A68A48]/30 to-transparent mx-auto my-1.5" />
-
-                            {/* Child's Message — Baal Manuhaar */}
-                            <div className="w-full flex flex-col items-center my-1.5">
-                                <span className="font-sans uppercase text-[9.5px] min-[430px]:text-[10px] tracking-[0.2em] font-medium text-[#75162D] mb-1">
-                                    Baal Manuhaar
-                                </span>
-                                <p className="font-serif italic text-xs min-[390px]:text-[13px] leading-relaxed text-[#2A0007] text-center font-normal px-3">
-                                    &ldquo;{weddingData?.messages?.childMessage?.text || "Please definitely come to my uncle's wedding"}&rdquo;
-                                </p>
-                                <span className="font-sans uppercase text-[9px] min-[430px]:text-[9.5px] tracking-[0.16em] text-[#75162D] font-medium mt-1">
-                                    — {weddingData?.messages?.childMessage?.sender || "Krisha"}
-                                </span>
+                                {/* Couple Inviting Line */}
+                                <div className="mt-1.5 flex items-center justify-center gap-1 text-center">
+                                    <span className="font-serif italic text-[10.5px] min-[390px]:text-[11px] text-[#5A2D35]">
+                                        along with
+                                    </span>
+                                    <span className="font-sans uppercase text-[10px] min-[390px]:text-[10.5px] tracking-[0.14em] font-medium text-[#75162D]">
+                                        {groomFirstName} &amp; {brideFirstName}
+                                    </span>
+                                </div>
                             </div>
 
                             <div className="w-20 min-[430px]:w-28 h-px bg-gradient-to-r from-transparent via-[#A68A48]/30 to-transparent mx-auto my-1.5" />
