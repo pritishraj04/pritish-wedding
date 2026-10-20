@@ -60,7 +60,7 @@
         },
         {
             "id": "wedding",
-            "name": "Departure of Barat & Auspicious Wedding",
+            "name": "Barat & Wedding Ceremony",
             "shortName": "Wedding & Barat",
             "date": "December 11, 2026",
             "day": "Friday",
@@ -80,7 +80,7 @@
         },
         {
             "id": "reception",
-            "name": "Welcome Ceremony & Wedding Feast",
+            "name": "Reception",
             "shortName": "Wedding Feast",
             "date": "December 14, 2026",
             "day": "Monday",
