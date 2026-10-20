@@ -295,7 +295,7 @@ export default function InvitationExperience({ weddingData }: { weddingData?: an
                     d="M 100, 100 m -85, 0 a 85,85 0 1,1 170,0 a 85,85 0 1,1 -170,0"
                     fill="none"
                   />
-                  <text className="fill-[#75162D] text-[11px] font-sans font-semibold uppercase tracking-[0.22em] pointer-events-none">
+                  <text className="fill-[#52000E] text-[12px] min-[390px]:text-[12.5px] font-sans font-bold uppercase tracking-[0.22em] pointer-events-none drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)]">
                     <textPath href="#circlePath" startOffset="25%" textAnchor="middle">
                       • Tap seal to open •
                     </textPath>

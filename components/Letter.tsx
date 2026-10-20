@@ -191,7 +191,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                 <div className={`w-[92vw] max-w-md min-h-[82vh] flex flex-col items-center justify-center p-4 min-[430px]:p-5 sm:p-6 rounded-md shadow-2xl relative ${t.cardBg} `}>
                     {/* Paper Texture overlay with reduced opacity for sharper text clarity */}
                     <div
-                        className="absolute inset-0 opacity-35 pointer-events-none rounded-md"
+                        className="absolute inset-0 opacity-22 pointer-events-none rounded-md"
                         style={{
                             backgroundImage: `url('/assets/images/paper-bg.jpg')`,
                             backgroundSize: 'cover',
@@ -284,16 +284,16 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
 
                         {/* Group 2: Hero Invitation & Couple Names */}
                         <div className="flex flex-col items-center w-full mb-1.5 min-[390px]:mb-2 min-[430px]:mb-2.5 z-10">
-                            <p className="font-serif italic text-xs min-[390px]:text-[13px] tracking-widest text-center text-[#75162D] font-normal mb-1">
+                            <p className="font-serif italic text-[13px] min-[390px]:text-[14px] tracking-widest text-center text-[#75162D] font-medium mb-1">
                                 for the wedding of
                             </p>
-                            <span className="font-wonderling uppercase text-[18px] min-[390px]:text-[20px] min-[430px]:text-[22px] sm:text-2xl font-medium text-center text-[#2A0007] leading-tight w-full px-4">
+                            <span className="font-wonderling uppercase text-[20px] min-[390px]:text-[22px] min-[430px]:text-[24px] sm:text-2xl font-medium text-center text-[#2A0007] leading-tight w-full px-4">
                                 {weddingData?.couple?.groom?.name ? `${weddingData.couple.groom.name.toUpperCase()}` : "PRITISH RAJ"}
                             </span>
                             <span className="font-hallbothy text-2xl min-[390px]:text-[28px] min-[430px]:text-3xl my-0.5 text-[#75162D] leading-none">
                                 and
                             </span>
-                            <span className="font-wonderling uppercase text-[18px] min-[390px]:text-[20px] min-[430px]:text-[22px] sm:text-2xl font-medium text-center text-[#2A0007] leading-tight w-full px-4">
+                            <span className="font-wonderling uppercase text-[20px] min-[390px]:text-[22px] min-[430px]:text-[24px] sm:text-2xl font-medium text-center text-[#2A0007] leading-tight w-full px-4">
                                 {weddingData?.couple?.bride?.name ? `${weddingData.couple.bride.name.toUpperCase()}` : "SIMRAN SINGH"}
                             </span>
                         </div>
@@ -302,21 +302,21 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                         <div className="flex flex-col items-center w-full mb-2 min-[390px]:mb-2.5 min-[430px]:mb-3">
                             {/* Date Row with hairline vertical dividers */}
                             <div className="flex items-center justify-center">
-                                <span className="font-sans uppercase text-[11px] min-[390px]:text-xs tracking-[0.18em] font-medium text-[#75162D]">
+                                <span className="font-sans uppercase text-[11.5px] min-[390px]:text-xs tracking-[0.16em] font-semibold text-[#75162D]">
                                     {displayMonth.toUpperCase()}
                                 </span>
-                                <span className="w-px h-3.5 bg-[#75162D]/35 mx-2.5 min-[390px]:mx-3" />
-                                <span className="font-sans text-2xl min-[390px]:text-[26px] font-light text-[#2A0007] leading-none tracking-normal px-0.5">
+                                <span className="w-px h-3.5 bg-[#75162D]/40 mx-2.5 min-[390px]:mx-3" />
+                                <span className="font-sans text-2xl min-[390px]:text-[28px] font-normal min-[390px]:font-medium text-[#2A0007] leading-none tracking-normal px-0.5">
                                     {displayDay}
                                 </span>
-                                <span className="w-px h-3.5 bg-[#75162D]/35 mx-2.5 min-[390px]:mx-3" />
-                                <span className="font-sans uppercase text-[11px] min-[390px]:text-xs tracking-[0.18em] font-medium text-[#75162D]">
+                                <span className="w-px h-3.5 bg-[#75162D]/40 mx-2.5 min-[390px]:mx-3" />
+                                <span className="font-sans uppercase text-[11.5px] min-[390px]:text-xs tracking-[0.16em] font-semibold text-[#75162D]">
                                     {displayYear}
                                 </span>
                             </div>
 
-                            {/* Main Event Venue / Address — Refined regular weight */}
-                            <p className="font-sans uppercase text-[9.5px] min-[390px]:text-[10px] min-[430px]:text-[10.5px] tracking-[0.16em] font-normal text-center text-[#5A2D35] mt-1.5 w-full px-4 leading-relaxed">
+                            {/* Main Event Venue / Address — Refined regular weight with strong contrast */}
+                            <p className="font-sans uppercase text-[11px] min-[390px]:text-[11.5px] min-[430px]:text-xs tracking-[0.14em] font-medium text-center text-[#3D0A14] mt-1.5 w-full px-4 leading-relaxed">
                                 {mainEventPlace.toUpperCase()}
                             </p>
                         </div>
@@ -330,26 +330,19 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                                 }
                                 @keyframes swipe-up-gesture {
                                     0% { transform: translateY(4px); opacity: 0; }
-                                    30% { opacity: 0.7; }
-                                    70% { opacity: 0.7; }
+                                    30% { opacity: 0.85; }
+                                    70% { opacity: 0.85; }
                                     100% { transform: translateY(-4px); opacity: 0; }
                                 }
                             `}</style>
                             <div className="animate-[swipe-up-gesture_2.5s_ease-in-out_infinite]">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" className="w-5 h-5 text-[#75162D]">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" className="w-5.5 h-5.5 text-[#75162D]">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v11" />
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M16 8l-4-4-4 4" />
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.5 13.5v-1a1.5 1.5 0 0 0-3 0v.5m-3-2v-1a1.5 1.5 0 0 0-3 0v4.5M6.5 14.5v1.5A5.5 5.5 0 0 0 12 21.5h1A5.5 5.5 0 0 0 18.5 16v-2.5a1.5 1.5 0 0 0-1.5-1.5h-1.5" />
                                 </svg>
                             </div>
-                            <span
-                                className="text-[8.5px] min-[390px]:text-[9px] uppercase font-medium tracking-[0.26em] bg-clip-text text-transparent"
-                                style={{
-                                    backgroundImage: 'linear-gradient(90deg, #75162D 0%, #75162D 40%, #F2D9A0 50%, #75162D 60%, #75162D 100%)',
-                                    backgroundSize: '200% auto',
-                                    animation: 'shine-text 3s linear infinite'
-                                }}
-                            >
+                            <span className="text-[10px] min-[390px]:text-[10.5px] uppercase font-bold tracking-[0.2em] text-[#75162D]">
                                 Swipe to explore
                             </span>
                         </div>
@@ -362,7 +355,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                 <div className={`w-[92vw] max-w-md min-h-[82vh] flex flex-col items-center justify-center p-4 min-[430px]:p-5 sm:p-6 rounded-md shadow-2xl relative ${t.cardBg} `}>
                     {/* Paper Texture overlay with reduced opacity for sharper text clarity */}
                     <div
-                        className="absolute inset-0 opacity-35 pointer-events-none rounded-md"
+                        className="absolute inset-0 opacity-22 pointer-events-none rounded-md"
                         style={{
                             backgroundImage: `url('/assets/images/paper-bg.jpg')`,
                             backgroundSize: 'cover',
@@ -385,10 +378,10 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                             <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[145px] min-[390px]:w-[160px] min-[430px]:w-[175px] object-contain opacity-95" />
                         </div>
 
-                        <p className="font-serif italic text-xs min-[390px]:text-[13px] tracking-widest text-center text-[#75162D] font-normal mb-0.5">
-                            traditions & blessings
+                        <p className="font-serif italic text-[13px] min-[390px]:text-[13.5px] tracking-widest text-center text-[#75162D] font-medium mb-0.5">
+                            traditions &amp; blessings
                         </p>
-                        <h2 className="font-sans uppercase text-[15px] min-[390px]:text-base min-[430px]:text-[17px] font-medium tracking-[0.18em] text-center text-[#2A0007] leading-tight mb-1.5">
+                        <h2 className="font-sans uppercase text-[16px] min-[390px]:text-[17px] min-[430px]:text-[18px] font-semibold tracking-[0.16em] text-center text-[#2A0007] leading-tight mb-1.5">
                             The Celebration
                         </h2>
 
@@ -397,16 +390,16 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                         {/* Celebration details - unboxed rows with dividers */}
                         <div className="w-full max-w-[295px] min-[390px]:max-w-[325px] flex flex-col items-center mt-2.5">
                             {/* Cordially Invited By Header */}
-                            <span className="font-sans uppercase text-[9.5px] min-[390px]:text-[10px] tracking-[0.22em] font-medium text-[#75162D] mb-1.5">
+                            <span className="font-sans uppercase text-[11px] min-[390px]:text-[11.5px] tracking-[0.18em] font-bold text-[#75162D] mb-1.5">
                                 Cordially Invited By
                             </span>
 
                             {/* Groom's Parents Row */}
                             <div className="w-full flex flex-col items-center text-center py-1">
-                                <span className="font-sans uppercase text-[8.5px] min-[390px]:text-[9px] tracking-[0.18em] text-[#75162D]/85 font-medium mb-0.5">
+                                <span className="font-sans uppercase text-[10px] min-[390px]:text-[10.5px] tracking-[0.14em] text-[#75162D] font-bold mb-0.5">
                                     Groom&apos;s Parents
                                 </span>
-                                <p className="font-serif italic text-[16px] min-[390px]:text-[17.5px] min-[430px]:text-[19px] text-[#2A0007] font-medium leading-snug tracking-wide">
+                                <p className="font-serif italic text-[18px] min-[390px]:text-[19.5px] min-[430px]:text-[21px] text-[#1F0005] font-semibold leading-snug tracking-wide">
                                     {groomMother} &amp; {groomFather}
                                 </p>
                             </div>
@@ -416,10 +409,10 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
 
                             {/* Bride's Parents Row */}
                             <div className="w-full flex flex-col items-center text-center py-1">
-                                <span className="font-sans uppercase text-[8.5px] min-[390px]:text-[9px] tracking-[0.18em] text-[#75162D]/85 font-medium mb-0.5">
+                                <span className="font-sans uppercase text-[10px] min-[390px]:text-[10.5px] tracking-[0.14em] text-[#75162D] font-bold mb-0.5">
                                     Bride&apos;s Parents
                                 </span>
-                                <p className="font-serif italic text-[16px] min-[390px]:text-[17.5px] min-[430px]:text-[19px] text-[#2A0007] font-medium leading-snug tracking-wide">
+                                <p className="font-serif italic text-[18px] min-[390px]:text-[19.5px] min-[430px]:text-[21px] text-[#1F0005] font-semibold leading-snug tracking-wide">
                                     {brideMother} &amp; {brideFather}
                                 </p>
                             </div>
@@ -429,10 +422,10 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
 
                             {/* Couple Inviting Line */}
                             <div className="flex items-center justify-center gap-1.5 text-center py-1">
-                                <span className="font-serif italic text-xs min-[390px]:text-[13px] text-[#5A2D35]">
+                                <span className="font-serif italic text-[13px] min-[390px]:text-[14px] text-[#3D0A14] font-medium">
                                     along with
                                 </span>
-                                <span className="font-sans uppercase text-[11px] min-[390px]:text-[11.5px] tracking-[0.16em] font-medium text-[#75162D]">
+                                <span className="font-sans uppercase text-[12.5px] min-[390px]:text-[13px] tracking-[0.14em] font-bold text-[#75162D]">
                                     {groomFirstName} &amp; {brideFirstName}
                                 </span>
                             </div>
@@ -442,10 +435,10 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
 
                             {/* Your Presence Section */}
                             <div className="w-full flex flex-col items-center mt-0.5">
-                                <span className="font-sans uppercase text-[9.5px] min-[430px]:text-[10px] tracking-[0.2em] font-medium text-[#75162D] mb-1">
+                                <span className="font-sans uppercase text-[10.5px] min-[390px]:text-[11px] tracking-[0.16em] font-bold text-[#75162D] mb-1">
                                     Your Presence
                                 </span>
-                                <p className="font-serif italic text-[11px] min-[390px]:text-[11.5px] leading-relaxed text-[#5A2D35] text-center font-normal px-2 max-w-[280px]">
+                                <p className="font-serif italic text-[12px] min-[390px]:text-[12.5px] leading-relaxed text-[#2A0007] text-center font-medium px-2 max-w-[300px]">
                                     &ldquo;{weddingData?.messages?.inviteText || "Please bless us with your gracious presence and heartfelt wishes as we begin this new life together."}&rdquo;
                                 </p>
                             </div>
@@ -459,7 +452,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                 <div className={`w-[92vw] max-w-md min-h-[82vh] flex flex-col items-center justify-center p-4 min-[430px]:p-5 sm:p-6 rounded-md shadow-2xl relative ${t.cardBg} `}>
                     {/* Paper Texture overlay with reduced opacity for sharper text clarity */}
                     <div
-                        className="absolute inset-0 opacity-35 pointer-events-none rounded-md"
+                        className="absolute inset-0 opacity-22 pointer-events-none rounded-md"
                         style={{
                             backgroundImage: `url('/assets/images/paper-bg.jpg')`,
                             backgroundSize: 'cover',
@@ -483,11 +476,11 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                         </div>
 
                         {/* Card Title Lockup */}
-                        <p className="font-serif italic text-xs min-[390px]:text-[13px] tracking-widest text-center text-[#75162D] font-normal mb-0.5">
-                            program & itinerary
+                        <p className="font-serif italic text-[13px] min-[390px]:text-[13.5px] tracking-widest text-center text-[#75162D] font-medium mb-0.5">
+                            program &amp; itinerary
                         </p>
-                        <h2 className="font-sans uppercase text-[15px] min-[390px]:text-base min-[430px]:text-[17px] font-medium tracking-[0.18em] text-center text-[#2A0007] leading-tight mb-1.5">
-                            When & Where
+                        <h2 className="font-sans uppercase text-[16px] min-[390px]:text-[17px] min-[430px]:text-[18px] font-semibold tracking-[0.16em] text-center text-[#2A0007] leading-tight mb-1.5">
+                            When &amp; Where
                         </h2>
 
                         <GoldDivider width="w-12" />
@@ -519,17 +512,16 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                                         {/* Left: Date Lockup (Apple Calendar Anchor) */}
                                         <div className={`flex flex-col items-center justify-center shrink-0 w-11 min-[390px]:w-12 text-center relative z-10 ${isWedding ? "py-0.5" : ""
                                             }`}>
-                                            <span className={`font-sans text-[9px] min-[390px]:text-[9.5px] uppercase tracking-wider font-semibold leading-none text-[#75162D]`}>
+                                            <span className="font-sans text-[10px] min-[390px]:text-[10.5px] uppercase tracking-wider font-bold leading-none text-[#75162D]">
                                                 {celeb.monthShort || "DEC"}
                                             </span>
                                             <span className={`font-sans leading-none my-0.5 tracking-tight ${isWedding
-                                                ? "text-2xl min-[390px]:text-[26px] font-normal text-[#75162D] drop-shadow-xs"
-                                                : "text-lg min-[390px]:text-xl font-light text-[#2A0007]"
+                                                ? "text-2xl min-[390px]:text-[28px] font-bold text-[#75162D] drop-shadow-xs"
+                                                : "text-xl min-[390px]:text-[22px] font-semibold text-[#2A0007]"
                                                 }`}>
                                                 {celeb.dateNum || "11"}
                                             </span>
-                                            <span className={`font-sans text-[8px] min-[390px]:text-[8.5px] uppercase tracking-wider leading-none ${isWedding ? "text-[#75162D] font-medium" : "text-[#75162D]/75 font-normal"
-                                                }`}>
+                                            <span className="font-sans text-[9px] min-[390px]:text-[9.5px] uppercase tracking-wider leading-none font-bold text-[#75162D]">
                                                 {celeb.dayShort || "FRI"}
                                             </span>
                                         </div>
@@ -544,24 +536,22 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                                         <div className="flex flex-col text-left justify-center flex-1 min-w-0 relative z-10">
                                             <div className="flex items-center gap-1.5 flex-wrap">
                                                 <h3 className={`font-sans tracking-normal leading-snug ${isWedding
-                                                    ? "text-[12px] min-[390px]:text-[12.5px] min-[430px]:text-[13px] font-semibold text-[#2A0007]"
-                                                    : "text-[11.5px] min-[390px]:text-xs min-[430px]:text-[12.5px] font-medium text-[#2A0007]"
+                                                    ? "text-[13.5px] min-[390px]:text-[14px] min-[430px]:text-[14.5px] font-bold text-[#2A0007]"
+                                                    : "text-[12.5px] min-[390px]:text-[13px] min-[430px]:text-[13.5px] font-semibold text-[#2A0007]"
                                                     }`}>
                                                     {celeb.name}
                                                 </h3>
                                                 {isWedding && (
-                                                    <span className="shrink-0 inline-flex items-center gap-1 text-[8px] min-[390px]:text-[8.5px] uppercase tracking-[0.14em] font-sans font-semibold px-2 py-0.5 rounded-full bg-gradient-to-r from-[#75162D] via-[#941C39] to-[#75162D] text-[#F2D9A0] border border-[#F2D9A0]/60 shadow-[0_0_8px_rgba(242,217,160,0.5)] leading-none">
+                                                    <span className="shrink-0 inline-flex items-center gap-1 text-[9px] min-[390px]:text-[9.5px] uppercase tracking-[0.14em] font-sans font-bold px-2 py-0.5 rounded-full bg-gradient-to-r from-[#75162D] via-[#941C39] to-[#75162D] text-[#F2D9A0] border border-[#F2D9A0]/60 shadow-[0_0_8px_rgba(242,217,160,0.5)] leading-none">
                                                         <Sparkles className="w-2 h-2 text-[#F2D9A0] animate-pulse" />
                                                         <span>Shubh Vivah</span>
                                                     </span>
                                                 )}
                                             </div>
-                                            <p className={`font-sans text-[10px] min-[390px]:text-[10.5px] font-normal leading-tight mt-0.5 truncate ${isWedding ? "text-[#5A2D35] font-medium" : "text-[#5A2D35]"
-                                                }`}>
+                                            <p className="font-sans text-[11px] min-[390px]:text-[11.5px] min-[430px]:text-[12px] font-medium leading-snug mt-0.5 text-[#3D0A14]">
                                                 {celeb.venueTitle}
                                             </p>
-                                            <p className={`font-sans text-[9.5px] min-[390px]:text-[10px] leading-tight mt-0.5 ${isWedding ? "text-[#75162D] font-medium" : "text-[#75162D]/85 font-normal"
-                                                }`}>
+                                            <p className="font-sans text-[10.5px] min-[390px]:text-[11px] min-[430px]:text-[11.5px] leading-tight mt-0.5 text-[#75162D] font-bold">
                                                 {celeb.time}
                                             </p>
                                         </div>
@@ -576,18 +566,18 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                                 href="https://maps.google.com/?q=Vrindavan+Garden+Fatuha+Patna"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="px-3.5 py-1.5 rounded-full text-[10px] uppercase font-sans tracking-[0.14em] font-medium transition-all shadow-sm active:scale-95 flex items-center gap-1.5 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B]"
+                                className="px-4 py-2 rounded-full text-[11px] min-[390px]:text-[11.5px] uppercase font-sans tracking-[0.12em] font-semibold transition-all shadow-sm active:scale-95 flex items-center gap-1.5 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B] min-h-[36px]"
                             >
-                                <MapPin className="w-3 h-3 text-[#F2D9A0]" />
+                                <MapPin className="w-3.5 h-3.5 text-[#F2D9A0]" />
                                 Venue Map
                             </a>
                             <a
                                 href="https://maps.google.com/?q=COI+Club+Danapur+Cantt+Patna"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="px-3.5 py-1.5 rounded-full text-[10px] uppercase font-sans tracking-[0.14em] font-medium transition-all shadow-sm active:scale-95 flex items-center gap-1.5 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B]"
+                                className="px-4 py-2 rounded-full text-[11px] min-[390px]:text-[11.5px] uppercase font-sans tracking-[0.12em] font-semibold transition-all shadow-sm active:scale-95 flex items-center gap-1.5 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B] min-h-[36px]"
                             >
-                                <MapPin className="w-3 h-3 text-[#F2D9A0]" />
+                                <MapPin className="w-3.5 h-3.5 text-[#F2D9A0]" />
                                 Feast Map
                             </a>
                         </div>
@@ -600,7 +590,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                 <div className={`w-[92vw] max-w-md min-h-[82vh] flex flex-col items-center justify-center p-4 min-[430px]:p-5 sm:p-6 rounded-md shadow-2xl relative ${t.cardBg} `}>
                     {/* Paper Texture overlay with reduced opacity for sharper text clarity */}
                     <div
-                        className="absolute inset-0 opacity-35 pointer-events-none rounded-md"
+                        className="absolute inset-0 opacity-22 pointer-events-none rounded-md"
                         style={{
                             backgroundImage: `url('/assets/images/paper-bg.jpg')`,
                             backgroundSize: 'cover',
@@ -623,10 +613,10 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                             <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[145px] min-[390px]:w-[160px] min-[430px]:w-[175px] object-contain opacity-95" />
                         </div>
 
-                        <p className="font-serif italic text-xs min-[390px]:text-[13px] tracking-widest text-center text-[#75162D] font-normal mb-0.5">
+                        <p className="font-serif italic text-[13px] min-[390px]:text-[13.5px] tracking-widest text-center text-[#75162D] font-medium mb-0.5">
                             hospitality &amp; logistics
                         </p>
-                        <h2 className="font-sans uppercase text-[15px] min-[390px]:text-base min-[430px]:text-[17px] font-medium tracking-[0.18em] text-center text-[#2A0007] leading-tight mb-1.5">
+                        <h2 className="font-sans uppercase text-[16px] min-[390px]:text-[17px] min-[430px]:text-[18px] font-semibold tracking-[0.16em] text-center text-[#2A0007] leading-tight mb-1.5">
                             Reach Out
                         </h2>
 
@@ -637,24 +627,24 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                             {/* Barat Departure */}
                             <div className="w-full text-left py-1">
                                 <div className="flex items-center justify-between gap-2">
-                                    <span className="font-sans uppercase text-[9.5px] min-[390px]:text-[10px] tracking-[0.18em] font-semibold text-[#75162D]">
+                                    <span className="font-sans uppercase text-[11px] min-[390px]:text-[11.5px] tracking-[0.14em] font-bold text-[#75162D]">
                                         Barat Departure
                                     </span>
                                     <a
                                         href="https://maps.google.com/?q=Gyan+Apartment+Kankarbagh+Patna"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border border-[#A68A48]/50 bg-[#75162D]/[0.04] text-[#75162D] hover:bg-[#75162D] hover:text-[#F2E5C6] hover:border-[#75162D] text-[9px] uppercase font-sans tracking-[0.12em] font-medium transition-all shadow-xs active:scale-95 group shrink-0"
+                                        className="inline-flex items-center gap-1 px-3 py-1 rounded-full border border-[#A68A48]/50 bg-[#75162D]/[0.04] text-[#75162D] hover:bg-[#75162D] hover:text-[#F2E5C6] hover:border-[#75162D] text-[10px] min-[390px]:text-[10.5px] uppercase font-sans tracking-[0.12em] font-semibold transition-all shadow-xs active:scale-95 group shrink-0"
                                         title="Open Barat Departure location in Google Maps"
                                     >
                                         <MapPin className="w-2.5 h-2.5 text-[#75162D] group-hover:text-[#F2D9A0] transition-colors" />
                                         <span>Map</span>
                                     </a>
                                 </div>
-                                <p className="font-sans text-[12px] min-[390px]:text-[12.5px] font-medium text-[#2A0007] mt-1">
+                                <p className="font-sans text-[13px] min-[390px]:text-[13.5px] font-bold text-[#1C0004] mt-1">
                                     4:00 PM • Friday, Dec 11
                                 </p>
-                                <p className="font-sans text-[10.5px] min-[390px]:text-[11px] text-[#5A2D35] font-normal leading-relaxed mt-0.5">
+                                <p className="font-sans text-[11.5px] min-[390px]:text-[12px] text-[#3D0A14] font-medium leading-relaxed mt-0.5">
                                     Departs from residence &ldquo;Gyan Apartment&rdquo;, Kankarbagh via private vehicles for Fatuha.
                                 </p>
                             </div>
@@ -665,24 +655,24 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                             {/* Janwasa Stay */}
                             <div className="w-full text-left py-1">
                                 <div className="flex items-center justify-between gap-2">
-                                    <span className="font-sans uppercase text-[9.5px] min-[390px]:text-[10px] tracking-[0.18em] font-semibold text-[#75162D]">
+                                    <span className="font-sans uppercase text-[11px] min-[390px]:text-[11.5px] tracking-[0.14em] font-bold text-[#75162D]">
                                         Janwasa (Groom&apos;s Side Stay)
                                     </span>
                                     <a
                                         href="https://maps.google.com/?q=Honest+Restro+Supanchak+Fatuha+Patna"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border border-[#A68A48]/50 bg-[#75162D]/[0.04] text-[#75162D] hover:bg-[#75162D] hover:text-[#F2E5C6] hover:border-[#75162D] text-[9px] uppercase font-sans tracking-[0.12em] font-medium transition-all shadow-xs active:scale-95 group shrink-0"
+                                        className="inline-flex items-center gap-1 px-3 py-1 rounded-full border border-[#A68A48]/50 bg-[#75162D]/[0.04] text-[#75162D] hover:bg-[#75162D] hover:text-[#F2E5C6] hover:border-[#75162D] text-[10px] min-[390px]:text-[10.5px] uppercase font-sans tracking-[0.12em] font-semibold transition-all shadow-xs active:scale-95 group shrink-0"
                                         title="Open Janwasa location in Google Maps"
                                     >
                                         <MapPin className="w-2.5 h-2.5 text-[#75162D] group-hover:text-[#F2D9A0] transition-colors" />
                                         <span>Map</span>
                                     </a>
                                 </div>
-                                <p className="font-sans text-[12px] min-[390px]:text-[12.5px] font-medium text-[#2A0007] mt-1">
+                                <p className="font-sans text-[13px] min-[390px]:text-[13.5px] font-bold text-[#1C0004] mt-1">
                                     HONEST RESTRO FOOD &amp; ROOM SERVICE
                                 </p>
-                                <p className="font-sans text-[10.5px] min-[390px]:text-[11px] text-[#5A2D35] font-normal leading-relaxed mt-0.5">
+                                <p className="font-sans text-[11.5px] min-[390px]:text-[12px] text-[#3D0A14] font-medium leading-relaxed mt-0.5">
                                     Supanchak, Fatuha (Patna)
                                 </p>
                             </div>
@@ -692,14 +682,14 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
 
                             {/* Contact & Inquiries */}
                             <div className="flex flex-col items-center w-full">
-                                <span className="font-sans uppercase text-[9px] min-[390px]:text-[9.5px] tracking-[0.2em] font-medium text-[#75162D] mb-1.5">
+                                <span className="font-sans uppercase text-[10.5px] min-[390px]:text-[11px] tracking-[0.16em] font-bold text-[#75162D] mb-1.5">
                                     For Hospitality &amp; Inquiries
                                 </span>
                                 <a
                                     href={`tel:${weddingData?.contact?.whatsapp || "919097785207"}`}
-                                    className="px-4 py-1.5 rounded-full text-[11px] min-[390px]:text-xs font-sans uppercase tracking-[0.12em] font-medium transition-all shadow-sm flex items-center gap-2 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B] active:scale-95"
+                                    className="px-5 py-2 min-h-[38px] rounded-full text-[12.5px] min-[390px]:text-[13px] font-sans uppercase tracking-[0.1em] font-bold transition-all shadow-sm flex items-center gap-2 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B] active:scale-95"
                                 >
-                                    <Phone className="w-3 h-3 text-[#F2D9A0]" />
+                                    <Phone className="w-3.5 h-3.5 text-[#F2D9A0]" />
                                     +91 {weddingData?.contact?.whatsapp || "9097785207"}
                                 </a>
                             </div>
@@ -710,7 +700,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                                     href={`https://wa.me/${weddingData?.contact?.whatsapp || "919097785207"}?text=${encodeURIComponent("Wishing you a very Happy Wedding celebration! 🥂")}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="font-serif italic text-[11px] min-[390px]:text-xs text-[#75162D] font-normal border-b border-[#75162D]/40 pb-0.5 hover:text-[#2A0007] transition-colors inline-block"
+                                    className="font-serif italic text-[12px] min-[390px]:text-[12.5px] text-[#75162D] font-medium border-b border-[#75162D]/40 pb-0.5 hover:text-[#2A0007] transition-colors inline-block"
                                 >
                                     Send blessings via WhatsApp →
                                 </a>
@@ -725,7 +715,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                 <div className={`w-[92vw] max-w-md min-h-[82vh] flex flex-col items-center justify-center p-4 min-[430px]:p-5 sm:p-6 rounded-md shadow-2xl relative ${t.cardBg} `}>
                     {/* Paper Texture overlay with reduced opacity for sharper text clarity */}
                     <div
-                        className="absolute inset-0 opacity-35 pointer-events-none rounded-md"
+                        className="absolute inset-0 opacity-22 pointer-events-none rounded-md"
                         style={{
                             backgroundImage: `url('/assets/images/paper-bg.jpg')`,
                             backgroundSize: 'cover',
@@ -756,20 +746,20 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                             <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[145px] min-[390px]:w-[160px] min-[430px]:w-[175px] object-contain opacity-95" />
                         </div>
 
-                        <p className="font-serif italic text-xs min-[390px]:text-[13px] tracking-widest text-center text-[#75162D] font-normal mb-0.5">
+                        <p className="font-serif italic text-[13px] min-[390px]:text-[13.5px] tracking-widest text-center text-[#75162D] font-medium mb-0.5">
                             the countdown
                         </p>
-                        <h2 className="font-sans uppercase text-[15px] min-[390px]:text-base min-[430px]:text-[17px] font-medium tracking-[0.18em] text-center text-[#2A0007] leading-tight mb-1">
+                        <h2 className="font-sans uppercase text-[16px] min-[390px]:text-[17px] min-[430px]:text-[18px] font-semibold tracking-[0.16em] text-center text-[#2A0007] leading-tight mb-1">
                             Forever Marked in Time
                         </h2>
 
-                        <span className="font-sans uppercase text-[11px] min-[390px]:text-xs tracking-[0.18em] font-medium text-[#75162D] mb-1">
+                        <span className="font-sans uppercase text-[12px] min-[390px]:text-[12.5px] tracking-[0.16em] font-bold text-[#75162D] mb-1">
                             {weddingData?.wedding?.displayDate || "DECEMBER 11th, 2026"}
                         </span>
 
                         <GoldDivider width="w-12" />
 
-                        <p className="font-serif italic text-[10.5px] min-[390px]:text-[11px] text-[#5A2D35] text-center max-w-[260px] mx-auto mt-1 mb-2 leading-relaxed font-normal">
+                        <p className="font-serif italic text-[12px] min-[390px]:text-[12.5px] text-[#3D0A14] text-center max-w-[280px] mx-auto mt-1 mb-2 leading-relaxed font-medium">
                             Counting down the moments until we celebrate our auspicious union.
                         </p>
 
@@ -779,7 +769,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                             <div className="flex items-center justify-center gap-2 w-full mb-2">
                                 <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#A68A48]/35 to-transparent" />
                                 <SparkleStar className="w-2.5 h-2.5 text-[#A68A48] animate-sparkle" style={{ animationDelay: '0.2s' }} />
-                                <span className="font-sans uppercase text-[8px] min-[390px]:text-[8.5px] tracking-[0.22em] font-medium text-[#75162D]">
+                                <span className="font-sans uppercase text-[10px] min-[390px]:text-[10.5px] tracking-[0.16em] font-bold text-[#75162D]">
                                     Auspicious Countdown
                                 </span>
                                 <SparkleStar className="w-2.5 h-2.5 text-[#A68A48] animate-sparkle" style={{ animationDelay: '1.4s' }} />
@@ -789,19 +779,19 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                             <CountdownTimer
                                 targetDate={weddingData?.wedding?.date || "2026-12-11T19:00:00"}
                                 textMainClass="text-[#75162D]"
-                                textMutedClass="text-[#8C6D23]"
+                                textMutedClass="text-[#75162D]"
                             />
 
                             {/* Bottom delicate hairline divider */}
                             <div className="w-28 min-[390px]:w-36 h-px bg-gradient-to-r from-transparent via-[#A68A48]/35 to-transparent mt-2" />
                         </div>
 
-                        <p className="font-hallbothy text-2xl min-[390px]:text-[26px] min-[430px]:text-3xl text-[#75162D] mb-2 leading-none text-center">
+                        <p className="font-hallbothy text-3xl min-[390px]:text-[34px] min-[430px]:text-4xl text-[#75162D] mb-2 leading-none text-center">
                             See you there
                         </p>
 
                         {/* Integrated Reset Seal Button */}
-                        <div className="flex flex-col items-center mt-5 min-[430px]:mt-6 z-30">
+                        <div className="flex flex-col items-center mt-4 min-[430px]:mt-5 z-30">
                             <button
                                 onClick={onClose}
                                 className="relative flex items-center justify-center w-18 h-18 min-[390px]:w-20 min-[390px]:h-20 rounded-full group cursor-pointer hover:scale-[1.04] active:scale-[0.96] transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
@@ -824,7 +814,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                                             d="M 100, 100 m -85, 0 a 85,85 0 1,1 170,0 a 85,85 0 1,1 -170,0"
                                             fill="none"
                                         />
-                                        <text className="fill-[#75162D] text-[11px] font-sans font-semibold uppercase tracking-[0.2em] pointer-events-none">
+                                        <text className="fill-[#52000E] text-[12px] min-[390px]:text-[12.5px] font-sans font-bold uppercase tracking-[0.2em] pointer-events-none drop-shadow-[0_1px_2px_rgba(255,255,255,0.6)]">
                                             <textPath href="#closeCirclePath" startOffset="25%" textAnchor="middle">
                                                 • Press here to reset •
                                             </textPath>

@@ -29,7 +29,7 @@ const greatVibes = Great_Vibes({
 const montserrat = Montserrat({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const playfair = Playfair_Display({
