@@ -251,23 +251,23 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
 
                     <div className="relative z-10 flex flex-col items-center justify-center w-full h-full py-2 min-[430px]:py-3 px-2">
                         {/* Group 1: Visual Announcement Header */}
-                        <div className="flex flex-col items-center mb-1.5 min-[390px]:mb-2 min-[430px]:mb-2.5 pointer-events-none">
-                            <div className="relative w-[105px] min-[390px]:w-[118px] min-[430px]:w-[135px] aspect-[547/475] z-0">
+                        <div className="flex flex-col items-center mb-2 min-[390px]:mb-3 min-[430px]:mb-4 pointer-events-none">
+                            <div className="relative w-[130px] min-[390px]:w-[148px] min-[430px]:w-[165px] aspect-[547/475] z-0">
                                 <Image
                                     src="/assets/images/couple2.png"
                                     alt="Couple"
                                     fill
-                                    sizes="(max-width: 430px) 120px, 140px"
+                                    sizes="(max-width: 430px) 150px, 175px"
                                     className="object-contain"
                                     priority
                                 />
                             </div>
-                            <div className="relative w-[86px] min-[390px]:w-[96px] min-[430px]:w-[110px] aspect-[1546/1048] mt-3 min-[390px]:mt-3.5 min-[430px]:mt-4">
+                            <div className="relative w-[110px] min-[390px]:w-[124px] min-[430px]:w-[140px] aspect-[1546/1048] mt-2.5 min-[390px]:mt-3 min-[430px]:mt-3.5">
                                 <Image
                                     src="/assets/images/sv.png"
                                     alt="Save the Date"
                                     fill
-                                    sizes="(max-width: 430px) 100px, 115px"
+                                    sizes="(max-width: 430px) 130px, 150px"
                                     className="object-contain"
                                     priority
                                 />
@@ -276,7 +276,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
 
                         {/* Group 2: Hero Invitation & Couple Names */}
                         <div className="flex flex-col items-center w-full mb-1.5 min-[390px]:mb-2 min-[430px]:mb-2.5 z-10">
-                            <p className="font-serif italic text-xs min-[390px]:text-[13px] tracking-widest text-center text-[#75162D] font-normal mb-0.5">
+                            <p className="font-serif italic text-xs min-[390px]:text-[13px] tracking-widest text-center text-[#75162D] font-normal mb-1">
                                 for the wedding of
                             </p>
                             <span className="font-wonderling uppercase text-[18px] min-[390px]:text-[20px] min-[430px]:text-[22px] sm:text-2xl font-medium text-center text-[#2A0007] leading-tight w-full px-4">
@@ -374,7 +374,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                     <div className="relative z-10 flex flex-col items-center justify-center w-full h-full py-2 min-[430px]:py-3 px-2">
                         {/* Header Badge */}
                         <div className="flex flex-col items-center mb-1 pointer-events-none">
-                            <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[115px] min-[390px]:w-[130px] min-[430px]:w-[145px] object-contain opacity-95" />
+                            <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[145px] min-[390px]:w-[160px] min-[430px]:w-[175px] object-contain opacity-95" />
                         </div>
 
                         {/* Card Title Lockup */}
@@ -480,7 +480,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                     <div className="relative z-10 flex flex-col items-center justify-center w-full h-full py-2 min-[430px]:py-3 px-2">
                         {/* Header Badge */}
                         <div className="flex flex-col items-center mb-1 pointer-events-none">
-                            <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[120px] min-[390px]:w-[135px] min-[430px]:w-[150px] object-contain opacity-95" />
+                            <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[145px] min-[390px]:w-[160px] min-[430px]:w-[175px] object-contain opacity-95" />
                         </div>
 
                         <p className="font-serif italic text-xs min-[390px]:text-[13px] tracking-widest text-center text-[#75162D] font-normal mb-0.5">
@@ -573,7 +573,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                     <div className="relative z-10 flex flex-col items-center justify-center w-full h-full py-2 min-[430px]:py-3 px-2">
                         {/* Header Badge */}
                         <div className="flex flex-col items-center mb-1 pointer-events-none">
-                            <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[120px] min-[390px]:w-[135px] min-[430px]:w-[150px] object-contain opacity-95" />
+                            <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[145px] min-[390px]:w-[160px] min-[430px]:w-[175px] object-contain opacity-95" />
                         </div>
 
                         <p className="font-serif italic text-xs min-[390px]:text-[13px] tracking-widest text-center text-[#75162D] font-normal mb-0.5">
@@ -695,7 +695,7 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                     <div className="relative z-10 flex flex-col items-center justify-center w-full h-full py-2 min-[430px]:py-3 px-2">
                         {/* Header Badge */}
                         <div className="flex flex-col items-center mb-1 pointer-events-none">
-                            <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[120px] min-[390px]:w-[135px] min-[430px]:w-[150px] object-contain opacity-95" />
+                            <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[145px] min-[390px]:w-[160px] min-[430px]:w-[175px] object-contain opacity-95" />
                         </div>
 
                         <p className="font-serif italic text-xs min-[390px]:text-[13px] tracking-widest text-center text-[#75162D] font-normal mb-0.5">
@@ -745,14 +745,14 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                                 />
 
                                 {/* Circular instruction text */}
-                                <div className="absolute inset-[-10px] min-[430px]:inset-[-13px] z-0 pointer-events-none transition-opacity duration-1000 opacity-80 group-hover:opacity-100">
+                                <div className="absolute inset-[-10px] min-[430px]:inset-[-13px] z-0 pointer-events-none transition-opacity duration-1000 opacity-90 group-hover:opacity-100">
                                     <svg viewBox="0 0 200 200" className="w-full h-full animate-spin-slow origin-center overflow-visible">
                                         <path
                                             id="closeCirclePath"
                                             d="M 100, 100 m -85, 0 a 85,85 0 1,1 170,0 a 85,85 0 1,1 -170,0"
                                             fill="none"
                                         />
-                                        <text className="fill-[#75162D] text-[11px] font-sans font-medium uppercase tracking-[0.2em] pointer-events-none">
+                                        <text className="fill-[#75162D] text-[11px] font-sans font-semibold uppercase tracking-[0.2em] pointer-events-none">
                                             <textPath href="#closeCirclePath" startOffset="25%" textAnchor="middle">
                                                 • Press here to reset •
                                             </textPath>
