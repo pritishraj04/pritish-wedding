@@ -213,19 +213,34 @@ export default function AudioPlayer({
     };
   }, [musicUrl, autoplay, fadeInDuration, loopFadeDuration, targetVolume, playWithFadeIn, fadeTo, cancelFade]);
 
-  const togglePlay = (e: React.MouseEvent) => {
+  const togglePlay = async (e: React.MouseEvent) => {
     e.stopPropagation();
     const audio = audioRef.current;
     if (!audio) return;
 
     cleanupListenersRef.current?.();
+    cancelFade();
+    loopStateRef.current = 'idle';
 
     if (isPlayingRef.current) {
       isUserPausedRef.current = true;
-      pauseWithFadeOut();
+      isPlayingRef.current = false;
+      setIsPlaying(false);
+      audio.pause();
     } else {
       isUserPausedRef.current = false;
-      playWithFadeIn();
+      try {
+        audio.volume = targetVolume;
+        await audio.play();
+        isPlayingRef.current = true;
+        setIsPlaying(true);
+      } catch (err: any) {
+        isPlayingRef.current = false;
+        setIsPlaying(false);
+        if (err?.name !== 'NotAllowedError') {
+          console.warn("Audio playback error:", err);
+        }
+      }
     }
   };
 

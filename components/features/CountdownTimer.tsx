@@ -53,16 +53,16 @@ export default function CountdownTimer({
     <div className="flex gap-1.5 min-[390px]:gap-2 min-[430px]:gap-2.5 justify-center items-baseline py-1">
       {Object.entries(timeLeft).map(([unit, value], index, array) => (
         <React.Fragment key={unit}>
-          <div className="flex flex-col items-center min-w-[40px] min-[390px]:min-w-[44px] min-[430px]:min-w-[48px]">
-            <div className={`text-xl min-[390px]:text-2xl min-[430px]:text-[26px] font-sans font-light tabular-nums leading-none tracking-tight ${textMainClass}`}>
+          <div className="flex flex-col items-center min-w-[36px] min-[390px]:min-w-[40px] min-[430px]:min-w-[44px]">
+            <div className={`text-2xl min-[390px]:text-[26px] min-[430px]:text-3xl font-sans font-light tabular-nums leading-none tracking-tight ${textMainClass}`}>
               {value.toString().padStart(2, '0')}
             </div>
-            <div className={`text-[8.5px] min-[390px]:text-[9px] min-[430px]:text-[9.5px] uppercase tracking-[0.16em] font-sans font-medium mt-1.5 ${textMutedClass}`}>
+            <div className={`text-[8px] min-[390px]:text-[8.5px] uppercase tracking-[0.16em] font-sans font-medium mt-1.5 ${textMutedClass}`}>
               {unit}
             </div>
           </div>
           {index < array.length - 1 && (
-            <div className={`text-base min-[390px]:text-lg min-[430px]:text-xl font-sans font-light opacity-35 -translate-y-1 ${textMainClass}`}>
+            <div className={`text-base min-[390px]:text-lg min-[430px]:text-xl font-sans font-light opacity-40 -translate-y-1 ${textMainClass}`}>
               :
             </div>
           )}

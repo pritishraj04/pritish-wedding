@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { MapPin, Calendar, ChevronDown, ChevronUp, Phone, X } from "lucide-react";
+import { MapPin, Calendar, ChevronDown, ChevronUp, Phone, X, Sparkles } from "lucide-react";
 import CountdownTimer from "./features/CountdownTimer";
 import { StickyScrollCards } from "@/components/ui/sticky-scroll-cards";
 
@@ -22,6 +22,14 @@ const CornerOrnament = ({ className }: { className?: string }) => (
    Gradient hairline that fades at both ends. */
 const GoldDivider = ({ width = "w-20" }: { width?: string }) => (
     <div className={`${width} h-px bg-gradient-to-r from-transparent via-[#F2D9A0] to-transparent mx-auto`} />
+);
+
+/* ─── SPARKLE STAR ─── 
+   4-point diamond starburst for auspicious celestial glints */
+const SparkleStar = ({ className = "w-3 h-3 text-[#F2D9A0]", style }: { className?: string, style?: React.CSSProperties }) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} style={style}>
+        <path d="M12 0 C12 6.63 6.63 12 0 12 C6.63 12 12 17.37 12 24 C12 17.37 17.37 12 24 12 C17.37 12 12 6.63 12 0 Z" />
+    </svg>
 );
 
 
@@ -377,79 +385,70 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                             <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[145px] min-[390px]:w-[160px] min-[430px]:w-[175px] object-contain opacity-95" />
                         </div>
 
-                        {/* Card Title Lockup */}
                         <p className="font-serif italic text-xs min-[390px]:text-[13px] tracking-widest text-center text-[#75162D] font-normal mb-0.5">
-                            program & itinerary
+                            traditions & blessings
                         </p>
                         <h2 className="font-sans uppercase text-[15px] min-[390px]:text-base min-[430px]:text-[17px] font-medium tracking-[0.18em] text-center text-[#2A0007] leading-tight mb-1.5">
-                            When & Where
+                            The Celebration
                         </h2>
 
                         <GoldDivider width="w-12" />
 
-                        {/* Apple-grade horizontal timeline schedule — space-optimized & scannable */}
-                        <div className="flex flex-col w-full max-w-[315px] min-[390px]:max-w-[335px] mt-2 mb-1.5 divide-y divide-[#A68A48]/20">
-                            {weddingData?.celebrations?.map((celeb: any, idx: number) => (
-                                <div key={idx} className={`flex items-center gap-2.5 min-[390px]:gap-3 py-1.5 min-[390px]:py-2 ${celeb.highlight ? "bg-[#75162D]/[0.03] -mx-1.5 px-1.5 rounded-sm" : ""}`}>
-                                    {/* Left: Date Lockup (Apple Calendar Anchor) */}
-                                    <div className="flex flex-col items-center justify-center shrink-0 w-11 min-[390px]:w-12 text-center">
-                                        <span className="font-sans text-[9px] min-[390px]:text-[9.5px] uppercase tracking-wider font-medium text-[#75162D] leading-none">
-                                            {celeb.monthShort || "DEC"}
-                                        </span>
-                                        <span className="font-sans text-lg min-[390px]:text-xl font-light text-[#2A0007] leading-none my-0.5 tracking-tight">
-                                            {celeb.dateNum || "11"}
-                                        </span>
-                                        <span className="font-sans text-[8px] min-[390px]:text-[8.5px] uppercase tracking-wider text-[#75162D]/75 font-normal leading-none">
-                                            {celeb.dayShort || "FRI"}
-                                        </span>
-                                    </div>
+                        {/* Celebration details - unboxed rows with dividers */}
+                        <div className="w-full max-w-[295px] min-[390px]:max-w-[325px] flex flex-col items-center mt-2.5">
+                            {/* Cordially Invited By Header */}
+                            <span className="font-sans uppercase text-[9.5px] min-[390px]:text-[10px] tracking-[0.22em] font-medium text-[#75162D] mb-1.5">
+                                Cordially Invited By
+                            </span>
 
-                                    {/* Hairline vertical divider */}
-                                    <div className="w-px h-7 bg-[#A68A48]/30 shrink-0" />
+                            {/* Groom's Parents Row */}
+                            <div className="w-full flex flex-col items-center text-center py-1">
+                                <span className="font-sans uppercase text-[8.5px] min-[390px]:text-[9px] tracking-[0.18em] text-[#75162D]/85 font-medium mb-0.5">
+                                    Groom&apos;s Parents
+                                </span>
+                                <p className="font-serif italic text-[16px] min-[390px]:text-[17.5px] min-[430px]:text-[19px] text-[#2A0007] font-medium leading-snug tracking-wide">
+                                    {groomMother} &amp; {groomFather}
+                                </p>
+                            </div>
 
-                                    {/* Right: Event Information */}
-                                    <div className="flex flex-col text-left justify-center flex-1 min-w-0">
-                                        <div className="flex items-center gap-1.5">
-                                            <h3 className={`font-sans text-[11.5px] min-[390px]:text-xs min-[430px]:text-[12.5px] font-medium tracking-normal leading-snug ${celeb.highlight ? "text-[#75162D]" : "text-[#2A0007]"}`}>
-                                                {celeb.name}
-                                            </h3>
-                                            {celeb.highlight && (
-                                                <span className="shrink-0 text-[7.5px] uppercase tracking-wider font-sans font-medium px-1.5 py-0.5 rounded-full bg-[#75162D] text-[#F2E5C6] leading-none">
-                                                    Wedding
-                                                </span>
-                                            )}
-                                        </div>
-                                        <p className="font-sans text-[10px] min-[390px]:text-[10.5px] text-[#5A2D35] font-normal leading-tight mt-0.5 truncate">
-                                            {celeb.venueTitle}
-                                        </p>
-                                        <p className="font-sans text-[9.5px] min-[390px]:text-[10px] text-[#75162D]/85 font-normal leading-tight mt-0.5">
-                                            {celeb.time}
-                                        </p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                            {/* Divider between Groom and Bride Parents */}
+                            <div className="w-28 min-[390px]:w-36 h-px bg-gradient-to-r from-transparent via-[#A68A48]/40 to-transparent my-1.5" />
 
-                        {/* Consolidated Venue Directions Action Bar with refined pill buttons */}
-                        <div className="flex flex-wrap items-center justify-center gap-2 mt-2 pt-2 border-t border-[#A68A48]/25 w-full max-w-[280px]">
-                            <a
-                                href="https://maps.google.com/?q=Vrindavan+Garden+Fatuha+Patna"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="px-3.5 py-1.5 rounded-full text-[10px] uppercase font-sans tracking-[0.14em] font-medium transition-all shadow-sm active:scale-95 flex items-center gap-1.5 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B]"
-                            >
-                                <MapPin className="w-3 h-3 text-[#F2D9A0]" />
-                                Wedding Map
-                            </a>
-                            <a
-                                href="https://maps.google.com/?q=COI+Club+Danapur+Cantt+Patna"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="px-3.5 py-1.5 rounded-full text-[10px] uppercase font-sans tracking-[0.14em] font-medium transition-all shadow-sm active:scale-95 flex items-center gap-1.5 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B]"
-                            >
-                                <MapPin className="w-3 h-3 text-[#F2D9A0]" />
-                                Feast Map
-                            </a>
+                            {/* Bride's Parents Row */}
+                            <div className="w-full flex flex-col items-center text-center py-1">
+                                <span className="font-sans uppercase text-[8.5px] min-[390px]:text-[9px] tracking-[0.18em] text-[#75162D]/85 font-medium mb-0.5">
+                                    Bride&apos;s Parents
+                                </span>
+                                <p className="font-serif italic text-[16px] min-[390px]:text-[17.5px] min-[430px]:text-[19px] text-[#2A0007] font-medium leading-snug tracking-wide">
+                                    {brideMother} &amp; {brideFather}
+                                </p>
+                            </div>
+
+                            {/* Divider before Couple Inviting Line */}
+                            <div className="w-28 min-[390px]:w-36 h-px bg-gradient-to-r from-transparent via-[#A68A48]/40 to-transparent my-1.5" />
+
+                            {/* Couple Inviting Line */}
+                            <div className="flex items-center justify-center gap-1.5 text-center py-1">
+                                <span className="font-serif italic text-xs min-[390px]:text-[13px] text-[#5A2D35]">
+                                    along with
+                                </span>
+                                <span className="font-sans uppercase text-[11px] min-[390px]:text-[11.5px] tracking-[0.16em] font-medium text-[#75162D]">
+                                    {groomFirstName} &amp; {brideFirstName}
+                                </span>
+                            </div>
+
+                            {/* Section Divider */}
+                            <div className="w-20 min-[430px]:w-28 h-px bg-gradient-to-r from-transparent via-[#A68A48]/35 to-transparent mx-auto my-2" />
+
+                            {/* Your Presence Section */}
+                            <div className="w-full flex flex-col items-center mt-0.5">
+                                <span className="font-sans uppercase text-[9.5px] min-[430px]:text-[10px] tracking-[0.2em] font-medium text-[#75162D] mb-1">
+                                    Your Presence
+                                </span>
+                                <p className="font-serif italic text-[11px] min-[390px]:text-[11.5px] leading-relaxed text-[#5A2D35] text-center font-normal px-2 max-w-[280px]">
+                                    &ldquo;{weddingData?.messages?.inviteText || "Please bless us with your gracious presence and heartfelt wishes as we begin this new life together."}&rdquo;
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -483,66 +482,114 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                             <img src="/assets/images/logo-plain.svg" alt="Logo" className="w-[145px] min-[390px]:w-[160px] min-[430px]:w-[175px] object-contain opacity-95" />
                         </div>
 
+                        {/* Card Title Lockup */}
                         <p className="font-serif italic text-xs min-[390px]:text-[13px] tracking-widest text-center text-[#75162D] font-normal mb-0.5">
-                            traditions & blessings
+                            program & itinerary
                         </p>
                         <h2 className="font-sans uppercase text-[15px] min-[390px]:text-base min-[430px]:text-[17px] font-medium tracking-[0.18em] text-center text-[#2A0007] leading-tight mb-1.5">
-                            The Celebration
+                            When & Where
                         </h2>
 
                         <GoldDivider width="w-12" />
 
-                        {/* Celebration details - structured 2x2 grid & quote */}
-                        <div className="w-full max-w-[295px] min-[390px]:max-w-[315px] flex flex-col items-center mt-2">
-                            {/* Cordially Invited By — Parents & Couple */}
-                            <div className="w-full flex flex-col items-center mb-2">
-                                <span className="font-sans uppercase text-[9px] min-[430px]:text-[9.5px] tracking-[0.2em] font-medium text-[#75162D] mb-1.5">
-                                    Cordially Invited By
-                                </span>
-                                <div className="grid grid-cols-2 gap-2 w-full text-center">
-                                    {/* Groom's Parents */}
-                                    <div className="flex flex-col items-center bg-[#75162D]/[0.025] border border-[#A68A48]/25 rounded-md py-2 px-1.5 shadow-xs">
-                                        <span className="font-sans uppercase text-[8px] min-[390px]:text-[8.5px] tracking-[0.14em] text-[#75162D] font-medium block">
-                                            Groom&apos;s Parents
-                                        </span>
-                                        <p className="font-serif italic text-[11px] min-[390px]:text-[11.5px] text-[#2A0007] font-medium mt-0.5 leading-snug">
-                                            {groomMother} &amp; {groomFather}
-                                        </p>
+                        {/* Apple-grade horizontal timeline schedule — space-optimized & scannable */}
+                        <div className="flex flex-col w-full max-w-[315px] min-[390px]:max-w-[335px] mt-2 mb-1.5 divide-y divide-[#A68A48]/20">
+                            {weddingData?.celebrations?.map((celeb: any, idx: number) => {
+                                const isWedding = celeb.highlight;
+                                return (
+                                    <div
+                                        key={idx}
+                                        className={`flex items-center gap-2.5 min-[390px]:gap-3 transition-all ${isWedding
+                                            ? "relative overflow-hidden -mx-2 px-2.5 py-2 my-0.5 bg-gradient-to-r from-transparent via-[#F2D9A0]/25 to-transparent"
+                                            : "py-1.5 min-[390px]:py-2"
+                                            }`}
+                                    >
+                                        {/* Shimmer light sweep and stars on wedding event */}
+                                        {isWedding && (
+                                            <>
+                                                <div
+                                                    className="absolute inset-y-0 w-24 -skew-x-12 bg-gradient-to-r from-transparent via-[#F2D9A0]/45 to-transparent pointer-events-none animate-shimmer-sweep"
+                                                    style={{ animationDuration: '3.5s' }}
+                                                />
+                                                <SparkleStar className="absolute top-1.5 right-2 w-3 h-3 text-[#A68A48] animate-sparkle" />
+                                                <SparkleStar className="absolute bottom-1.5 left-2 w-2.5 h-2.5 text-[#A68A48] animate-sparkle" style={{ animationDelay: '1.5s' }} />
+                                            </>
+                                        )}
+
+                                        {/* Left: Date Lockup (Apple Calendar Anchor) */}
+                                        <div className={`flex flex-col items-center justify-center shrink-0 w-11 min-[390px]:w-12 text-center relative z-10 ${isWedding ? "py-0.5" : ""
+                                            }`}>
+                                            <span className={`font-sans text-[9px] min-[390px]:text-[9.5px] uppercase tracking-wider font-semibold leading-none text-[#75162D]`}>
+                                                {celeb.monthShort || "DEC"}
+                                            </span>
+                                            <span className={`font-sans leading-none my-0.5 tracking-tight ${isWedding
+                                                ? "text-2xl min-[390px]:text-[26px] font-normal text-[#75162D] drop-shadow-xs"
+                                                : "text-lg min-[390px]:text-xl font-light text-[#2A0007]"
+                                                }`}>
+                                                {celeb.dateNum || "11"}
+                                            </span>
+                                            <span className={`font-sans text-[8px] min-[390px]:text-[8.5px] uppercase tracking-wider leading-none ${isWedding ? "text-[#75162D] font-medium" : "text-[#75162D]/75 font-normal"
+                                                }`}>
+                                                {celeb.dayShort || "FRI"}
+                                            </span>
+                                        </div>
+
+                                        {/* Hairline vertical divider */}
+                                        <div className={`shrink-0 relative z-10 ${isWedding
+                                            ? "w-[1.5px] h-9 bg-gradient-to-b from-[#A68A48] via-[#F2D9A0] to-[#A68A48]"
+                                            : "w-px h-7 bg-[#A68A48]/30"
+                                            }`} />
+
+                                        {/* Right: Event Information */}
+                                        <div className="flex flex-col text-left justify-center flex-1 min-w-0 relative z-10">
+                                            <div className="flex items-center gap-1.5 flex-wrap">
+                                                <h3 className={`font-sans tracking-normal leading-snug ${isWedding
+                                                    ? "text-[12px] min-[390px]:text-[12.5px] min-[430px]:text-[13px] font-semibold text-[#2A0007]"
+                                                    : "text-[11.5px] min-[390px]:text-xs min-[430px]:text-[12.5px] font-medium text-[#2A0007]"
+                                                    }`}>
+                                                    {celeb.name}
+                                                </h3>
+                                                {isWedding && (
+                                                    <span className="shrink-0 inline-flex items-center gap-1 text-[8px] min-[390px]:text-[8.5px] uppercase tracking-[0.14em] font-sans font-semibold px-2 py-0.5 rounded-full bg-gradient-to-r from-[#75162D] via-[#941C39] to-[#75162D] text-[#F2D9A0] border border-[#F2D9A0]/60 shadow-[0_0_8px_rgba(242,217,160,0.5)] leading-none">
+                                                        <Sparkles className="w-2 h-2 text-[#F2D9A0] animate-pulse" />
+                                                        <span>Shubh Vivah</span>
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <p className={`font-sans text-[10px] min-[390px]:text-[10.5px] font-normal leading-tight mt-0.5 truncate ${isWedding ? "text-[#5A2D35] font-medium" : "text-[#5A2D35]"
+                                                }`}>
+                                                {celeb.venueTitle}
+                                            </p>
+                                            <p className={`font-sans text-[9.5px] min-[390px]:text-[10px] leading-tight mt-0.5 ${isWedding ? "text-[#75162D] font-medium" : "text-[#75162D]/85 font-normal"
+                                                }`}>
+                                                {celeb.time}
+                                            </p>
+                                        </div>
                                     </div>
+                                );
+                            })}
+                        </div>
 
-                                    {/* Bride's Parents */}
-                                    <div className="flex flex-col items-center bg-[#75162D]/[0.025] border border-[#A68A48]/25 rounded-md py-2 px-1.5 shadow-xs">
-                                        <span className="font-sans uppercase text-[8px] min-[390px]:text-[8.5px] tracking-[0.14em] text-[#75162D] font-medium block">
-                                            Bride&apos;s Parents
-                                        </span>
-                                        <p className="font-serif italic text-[11px] min-[390px]:text-[11.5px] text-[#2A0007] font-medium mt-0.5 leading-snug">
-                                            {brideMother} &amp; {brideFather}
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Couple Inviting Line */}
-                                <div className="mt-1.5 flex items-center justify-center gap-1 text-center">
-                                    <span className="font-serif italic text-[10.5px] min-[390px]:text-[11px] text-[#5A2D35]">
-                                        along with
-                                    </span>
-                                    <span className="font-sans uppercase text-[10px] min-[390px]:text-[10.5px] tracking-[0.14em] font-medium text-[#75162D]">
-                                        {groomFirstName} &amp; {brideFirstName}
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div className="w-20 min-[430px]:w-28 h-px bg-gradient-to-r from-transparent via-[#A68A48]/30 to-transparent mx-auto my-1.5" />
-
-                            {/* Your Presence Section */}
-                            <div className="w-full flex flex-col items-center mt-1">
-                                <span className="font-sans uppercase text-[9.5px] min-[430px]:text-[10px] tracking-[0.2em] font-medium text-[#75162D] mb-1">
-                                    Your Presence
-                                </span>
-                                <p className="font-serif italic text-[10.5px] min-[390px]:text-[11px] leading-relaxed text-[#5A2D35] text-center font-normal px-2 max-w-[280px]">
-                                    &ldquo;{weddingData?.messages?.inviteText || "Please bless us with your gracious presence and heartfelt wishes as we begin this new life together."}&rdquo;
-                                </p>
-                            </div>
+                        {/* Consolidated Venue Directions Action Bar with refined pill buttons */}
+                        <div className="flex flex-wrap items-center justify-center gap-2 mt-2 pt-2 border-t border-[#A68A48]/25 w-full max-w-[280px]">
+                            <a
+                                href="https://maps.google.com/?q=Vrindavan+Garden+Fatuha+Patna"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-3.5 py-1.5 rounded-full text-[10px] uppercase font-sans tracking-[0.14em] font-medium transition-all shadow-sm active:scale-95 flex items-center gap-1.5 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B]"
+                            >
+                                <MapPin className="w-3 h-3 text-[#F2D9A0]" />
+                                Venue Map
+                            </a>
+                            <a
+                                href="https://maps.google.com/?q=COI+Club+Danapur+Cantt+Patna"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-3.5 py-1.5 rounded-full text-[10px] uppercase font-sans tracking-[0.14em] font-medium transition-all shadow-sm active:scale-95 flex items-center gap-1.5 bg-[#75162D] text-[#F2E5C6] hover:bg-[#3B010B]"
+                            >
+                                <MapPin className="w-3 h-3 text-[#F2D9A0]" />
+                                Feast Map
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -585,64 +632,67 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
 
                         <GoldDivider width="w-12" />
 
-                        {/* Structured Travel & Contact Sections */}
-                        <div className="w-full max-w-[295px] min-[390px]:max-w-[315px] flex flex-col items-center mt-2">
-                            {/* Stay & Travel Micro-Cards */}
-                            <div className="w-full flex flex-col gap-2">
-                                {/* Barat Departure Card */}
-                                <div className="w-full border border-[#A68A48]/30 bg-[#75162D]/[0.025] rounded-md p-2 min-[390px]:p-2.5 text-left transition-all hover:border-[#A68A48]/50">
-                                    <div className="flex items-center justify-between gap-2">
-                                        <span className="font-sans uppercase text-[9px] min-[390px]:text-[9.5px] tracking-[0.16em] font-medium text-[#75162D]">
-                                            Barat Departure
-                                        </span>
-                                        <a
-                                            href="https://maps.google.com/?q=Gyan+Apartment+Kankarbagh+Patna"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border border-[#A68A48]/40 bg-[#F2E5C6] text-[#75162D] hover:bg-[#75162D] hover:text-[#F2E5C6] hover:border-[#75162D] text-[9px] uppercase font-sans tracking-[0.12em] font-medium transition-all shadow-xs active:scale-95 group shrink-0"
-                                            title="Open Barat Departure location in Google Maps"
-                                        >
-                                            <MapPin className="w-2.5 h-2.5 text-[#75162D] group-hover:text-[#F2D9A0] transition-colors" />
-                                            <span>Map</span>
-                                        </a>
-                                    </div>
-                                    <p className="font-sans text-[11.5px] min-[390px]:text-xs font-medium text-[#2A0007] mt-1">
-                                        4:00 PM • Friday, Dec 11
-                                    </p>
-                                    <p className="font-sans text-[10px] min-[390px]:text-[10.5px] text-[#5A2D35] font-normal leading-tight mt-0.5">
-                                        Departs from residence &ldquo;Gyan Apartment&rdquo;, Kankarbagh via private vehicles for Fatuha.
-                                    </p>
+                        {/* Structured Travel & Contact Sections - unboxed with dividers */}
+                        <div className="w-full max-w-[295px] min-[390px]:max-w-[325px] flex flex-col items-center mt-2.5">
+                            {/* Barat Departure */}
+                            <div className="w-full text-left py-1">
+                                <div className="flex items-center justify-between gap-2">
+                                    <span className="font-sans uppercase text-[9.5px] min-[390px]:text-[10px] tracking-[0.18em] font-semibold text-[#75162D]">
+                                        Barat Departure
+                                    </span>
+                                    <a
+                                        href="https://maps.google.com/?q=Gyan+Apartment+Kankarbagh+Patna"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border border-[#A68A48]/50 bg-[#75162D]/[0.04] text-[#75162D] hover:bg-[#75162D] hover:text-[#F2E5C6] hover:border-[#75162D] text-[9px] uppercase font-sans tracking-[0.12em] font-medium transition-all shadow-xs active:scale-95 group shrink-0"
+                                        title="Open Barat Departure location in Google Maps"
+                                    >
+                                        <MapPin className="w-2.5 h-2.5 text-[#75162D] group-hover:text-[#F2D9A0] transition-colors" />
+                                        <span>Map</span>
+                                    </a>
                                 </div>
-
-                                {/* Janwasa Stay Card */}
-                                <div className="w-full border border-[#A68A48]/30 bg-[#75162D]/[0.025] rounded-md p-2 min-[390px]:p-2.5 text-left transition-all hover:border-[#A68A48]/50">
-                                    <div className="flex items-center justify-between gap-2">
-                                        <span className="font-sans uppercase text-[9px] min-[390px]:text-[9.5px] tracking-[0.16em] font-medium text-[#75162D]">
-                                            Janwasa (Groom&apos;s Side Stay)
-                                        </span>
-                                        <a
-                                            href="https://maps.google.com/?q=Honest+Restro+Supanchak+Fatuha+Patna"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border border-[#A68A48]/40 bg-[#F2E5C6] text-[#75162D] hover:bg-[#75162D] hover:text-[#F2E5C6] hover:border-[#75162D] text-[9px] uppercase font-sans tracking-[0.12em] font-medium transition-all shadow-xs active:scale-95 group shrink-0"
-                                            title="Open Janwasa location in Google Maps"
-                                        >
-                                            <MapPin className="w-2.5 h-2.5 text-[#75162D] group-hover:text-[#F2D9A0] transition-colors" />
-                                            <span>Map</span>
-                                        </a>
-                                    </div>
-                                    <p className="font-sans text-[11px] min-[390px]:text-[11.5px] font-medium text-[#2A0007] mt-1">
-                                        HONEST RESTRO FOOD &amp; ROOM SERVICE
-                                    </p>
-                                    <p className="font-sans text-[10px] min-[390px]:text-[10.5px] text-[#5A2D35] font-normal leading-tight mt-0.5">
-                                        Supanchak, Fatuha (Patna)
-                                    </p>
-                                </div>
+                                <p className="font-sans text-[12px] min-[390px]:text-[12.5px] font-medium text-[#2A0007] mt-1">
+                                    4:00 PM • Friday, Dec 11
+                                </p>
+                                <p className="font-sans text-[10.5px] min-[390px]:text-[11px] text-[#5A2D35] font-normal leading-relaxed mt-0.5">
+                                    Departs from residence &ldquo;Gyan Apartment&rdquo;, Kankarbagh via private vehicles for Fatuha.
+                                </p>
                             </div>
 
+                            {/* Divider between Departure and Janwasa */}
+                            <div className="w-full h-px bg-gradient-to-r from-transparent via-[#A68A48]/35 to-transparent my-2 min-[390px]:my-2.5" />
+
+                            {/* Janwasa Stay */}
+                            <div className="w-full text-left py-1">
+                                <div className="flex items-center justify-between gap-2">
+                                    <span className="font-sans uppercase text-[9.5px] min-[390px]:text-[10px] tracking-[0.18em] font-semibold text-[#75162D]">
+                                        Janwasa (Groom&apos;s Side Stay)
+                                    </span>
+                                    <a
+                                        href="https://maps.google.com/?q=Honest+Restro+Supanchak+Fatuha+Patna"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border border-[#A68A48]/50 bg-[#75162D]/[0.04] text-[#75162D] hover:bg-[#75162D] hover:text-[#F2E5C6] hover:border-[#75162D] text-[9px] uppercase font-sans tracking-[0.12em] font-medium transition-all shadow-xs active:scale-95 group shrink-0"
+                                        title="Open Janwasa location in Google Maps"
+                                    >
+                                        <MapPin className="w-2.5 h-2.5 text-[#75162D] group-hover:text-[#F2D9A0] transition-colors" />
+                                        <span>Map</span>
+                                    </a>
+                                </div>
+                                <p className="font-sans text-[12px] min-[390px]:text-[12.5px] font-medium text-[#2A0007] mt-1">
+                                    HONEST RESTRO FOOD &amp; ROOM SERVICE
+                                </p>
+                                <p className="font-sans text-[10.5px] min-[390px]:text-[11px] text-[#5A2D35] font-normal leading-relaxed mt-0.5">
+                                    Supanchak, Fatuha (Patna)
+                                </p>
+                            </div>
+
+                            {/* Divider before Hospitality & Inquiries */}
+                            <div className="w-24 min-[430px]:w-32 h-px bg-gradient-to-r from-transparent via-[#A68A48]/40 to-transparent mx-auto my-2.5 min-[390px]:my-3" />
+
                             {/* Contact & Inquiries */}
-                            <div className="flex flex-col items-center mt-3 w-full">
-                                <span className="font-sans uppercase text-[9px] min-[390px]:text-[9.5px] tracking-[0.18em] font-medium text-[#75162D] mb-1">
+                            <div className="flex flex-col items-center w-full">
+                                <span className="font-sans uppercase text-[9px] min-[390px]:text-[9.5px] tracking-[0.2em] font-medium text-[#75162D] mb-1.5">
                                     For Hospitality &amp; Inquiries
                                 </span>
                                 <a
@@ -688,9 +738,17 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                     <CornerOrnament className={`absolute bottom-2.5 left-2.5 min-[430px]:bottom-3 min-[430px]:left-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament} -scale-y-100`} />
                     <CornerOrnament className={`absolute bottom-2.5 right-2.5 min-[430px]:bottom-3 min-[430px]:right-3 w-10 h-10 min-[430px]:w-11 min-[430px]:h-11 sm:w-12 sm:h-12 ${t.ornament} scale-[-1]`} />
 
-                    {/* Double-line gold border */}
-                    <div className={`absolute inset-3.5 min-[430px]:inset-4 sm:inset-5 border ${t.border} pointer-events-none`} />
-                    <div className={`absolute inset-[18px] min-[430px]:inset-[22px] sm:inset-[26px] border ${t.border} opacity-50 pointer-events-none`} />
+                    {/* Double-line gold border with sparkling gold glow and twinkle stars */}
+                    <div className="absolute inset-3.5 min-[430px]:inset-4 sm:inset-5 border border-[#F2D9A0] rounded-sm pointer-events-none animate-border-glow" />
+                    <div className="absolute inset-[18px] min-[430px]:inset-[22px] sm:inset-[26px] border border-[#F2D9A0]/70 rounded-xs pointer-events-none shadow-[0_0_12px_rgba(242,217,160,0.4)]" />
+
+                    {/* Twinkling Sparkle Stars along the borders of the last page */}
+                    <SparkleStar className="absolute top-4 left-14 w-3.5 h-3.5 text-[#F2D9A0] pointer-events-none z-20 animate-sparkle" style={{ animationDelay: '0s' }} />
+                    <SparkleStar className="absolute top-4 right-14 w-3.5 h-3.5 text-[#F2D9A0] pointer-events-none z-20 animate-sparkle" style={{ animationDelay: '0.9s' }} />
+                    <SparkleStar className="absolute top-1/3 left-3 w-3 h-3 text-[#F2D9A0] pointer-events-none z-20 animate-sparkle" style={{ animationDelay: '1.8s' }} />
+                    <SparkleStar className="absolute top-2/3 right-3 w-3 h-3 text-[#F2D9A0] pointer-events-none z-20 animate-sparkle" style={{ animationDelay: '0.4s' }} />
+                    <SparkleStar className="absolute bottom-4 left-14 w-3.5 h-3.5 text-[#F2D9A0] pointer-events-none z-20 animate-sparkle" style={{ animationDelay: '1.3s' }} />
+                    <SparkleStar className="absolute bottom-4 right-14 w-3.5 h-3.5 text-[#F2D9A0] pointer-events-none z-20 animate-sparkle" style={{ animationDelay: '2.2s' }} />
 
                     <div className="relative z-10 flex flex-col items-center justify-center w-full h-full py-2 min-[430px]:py-3 px-2">
                         {/* Header Badge */}
@@ -715,13 +773,27 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                             Counting down the moments until we celebrate our auspicious union.
                         </p>
 
-                        {/* Countdown frame - with delicate 1px border box, without background */}
-                        <div className="w-full max-w-[270px] min-[390px]:max-w-[290px] border border-[#A68A48]/35 rounded-sm py-2 px-3 flex flex-col items-center justify-center mb-2">
+                        {/* Unboxed Floating Countdown with Hairline Dividers & Celestial Sparkles */}
+                        <div className="relative w-full max-w-[285px] min-[390px]:max-w-[315px] flex flex-col items-center my-2">
+                            {/* Top delicate hairline divider with subtle title */}
+                            <div className="flex items-center justify-center gap-2 w-full mb-2">
+                                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#A68A48]/35 to-transparent" />
+                                <SparkleStar className="w-2.5 h-2.5 text-[#A68A48] animate-sparkle" style={{ animationDelay: '0.2s' }} />
+                                <span className="font-sans uppercase text-[8px] min-[390px]:text-[8.5px] tracking-[0.22em] font-medium text-[#75162D]">
+                                    Auspicious Countdown
+                                </span>
+                                <SparkleStar className="w-2.5 h-2.5 text-[#A68A48] animate-sparkle" style={{ animationDelay: '1.4s' }} />
+                                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[#A68A48]/35 to-transparent" />
+                            </div>
+
                             <CountdownTimer
                                 targetDate={weddingData?.wedding?.date || "2026-12-11T19:00:00"}
-                                textMainClass="text-[#2A0007]"
-                                textMutedClass="text-[#75162D]"
+                                textMainClass="text-[#75162D]"
+                                textMutedClass="text-[#8C6D23]"
                             />
+
+                            {/* Bottom delicate hairline divider */}
+                            <div className="w-28 min-[390px]:w-36 h-px bg-gradient-to-r from-transparent via-[#A68A48]/35 to-transparent mt-2" />
                         </div>
 
                         <p className="font-hallbothy text-2xl min-[390px]:text-[26px] min-[430px]:text-3xl text-[#75162D] mb-2 leading-none text-center">
