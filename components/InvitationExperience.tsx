@@ -286,7 +286,7 @@ export default function InvitationExperience({ weddingData }: { weddingData?: an
 
               {/* Circular Instruction Text */}
               <div
-                className={`absolute inset-0 z-0 pointer-events-none transition-opacity duration-1000 ${stage === "sealed" ? "opacity-100 delay-1000" : "opacity-0"
+                className={`absolute inset-0 z-0 pointer-events-none transition-opacity duration-1000 ${stage === "sealed" ? "opacity-90 delay-1000" : "opacity-0"
                   }`}
               >
                 <svg viewBox="0 0 200 200" className="w-full h-full animate-spin-slow origin-center overflow-visible">
@@ -295,12 +295,12 @@ export default function InvitationExperience({ weddingData }: { weddingData?: an
                     d="M 100, 100 m -85, 0 a 85,85 0 1,1 170,0 a 85,85 0 1,1 -170,0"
                     fill="none"
                   />
-                  <text className="fill-[#C9A961]/50 text-xs font-bold uppercase tracking-[0.2em] pointer-events-none">
+                  <text className="fill-[#F2D9A0] text-[11px] font-sans font-medium uppercase tracking-[0.22em] pointer-events-none drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
                     <textPath href="#circlePath" startOffset="25%" textAnchor="middle">
-                      • Tap here to open •
+                      • Tap seal to open •
                     </textPath>
                     <textPath href="#circlePath" startOffset="75%" textAnchor="middle">
-                      • Tap here to open •
+                      • Tap seal to open •
                     </textPath>
                   </text>
                 </svg>

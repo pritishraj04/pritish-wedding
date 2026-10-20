@@ -50,19 +50,19 @@ export default function CountdownTimer({
   if (!isMounted) return null;
 
   return (
-    <div className="flex gap-1 min-[390px]:gap-1.5 min-[430px]:gap-2 justify-center items-start py-0.5">
+    <div className="flex gap-1.5 min-[390px]:gap-2 min-[430px]:gap-2.5 justify-center items-baseline py-1">
       {Object.entries(timeLeft).map(([unit, value], index, array) => (
         <React.Fragment key={unit}>
-          <div className="flex flex-col items-center min-w-[38px] min-[390px]:min-w-[44px] min-[430px]:min-w-[50px]">
-            <div className={`text-lg min-[390px]:text-xl min-[430px]:text-2xl font-sans font-medium mb-0.5 tabular-nums leading-tight ${textMainClass}`}>
+          <div className="flex flex-col items-center min-w-[40px] min-[390px]:min-w-[44px] min-[430px]:min-w-[48px]">
+            <div className={`text-xl min-[390px]:text-2xl min-[430px]:text-[26px] font-sans font-light tabular-nums leading-none tracking-tight ${textMainClass}`}>
               {value.toString().padStart(2, '0')}
             </div>
-            <div className={`text-[7.5px] min-[390px]:text-[8px] min-[430px]:text-[9px] uppercase tracking-[0.12em] font-sans font-medium ${textMutedClass}`}>
+            <div className={`text-[8.5px] min-[390px]:text-[9px] min-[430px]:text-[9.5px] uppercase tracking-[0.16em] font-sans font-medium mt-1.5 ${textMutedClass}`}>
               {unit}
             </div>
           </div>
           {index < array.length - 1 && (
-            <div className={`text-base min-[390px]:text-lg min-[430px]:text-xl font-sans font-light -mt-0.5 opacity-50 ${textMainClass}`}>
+            <div className={`text-base min-[390px]:text-lg min-[430px]:text-xl font-sans font-light opacity-35 -translate-y-1 ${textMainClass}`}>
               :
             </div>
           )}
