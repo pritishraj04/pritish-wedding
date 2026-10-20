@@ -581,11 +581,23 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                             {/* Stay & Travel Micro-Cards */}
                             <div className="w-full flex flex-col gap-2">
                                 {/* Barat Departure Card */}
-                                <div className="w-full border border-[#A68A48]/25 bg-[#75162D]/[0.02] rounded-md p-2 text-center">
-                                    <span className="font-sans uppercase text-[9px] min-[390px]:text-[9.5px] tracking-[0.18em] font-medium text-[#75162D] block">
-                                        Barat Departure
-                                    </span>
-                                    <p className="font-sans text-[11.5px] min-[390px]:text-xs font-medium text-[#2A0007] mt-0.5">
+                                <div className="w-full border border-[#A68A48]/30 bg-[#75162D]/[0.025] rounded-md p-2 min-[390px]:p-2.5 text-left transition-all hover:border-[#A68A48]/50">
+                                    <div className="flex items-center justify-between gap-2">
+                                        <span className="font-sans uppercase text-[9px] min-[390px]:text-[9.5px] tracking-[0.16em] font-medium text-[#75162D]">
+                                            Barat Departure
+                                        </span>
+                                        <a
+                                            href="https://maps.google.com/?q=Gyan+Apartment+Kankarbagh+Patna"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border border-[#A68A48]/40 bg-[#F2E5C6] text-[#75162D] hover:bg-[#75162D] hover:text-[#F2E5C6] hover:border-[#75162D] text-[9px] uppercase font-sans tracking-[0.12em] font-medium transition-all shadow-xs active:scale-95 group shrink-0"
+                                            title="Open Barat Departure location in Google Maps"
+                                        >
+                                            <MapPin className="w-2.5 h-2.5 text-[#75162D] group-hover:text-[#F2D9A0] transition-colors" />
+                                            <span>Map</span>
+                                        </a>
+                                    </div>
+                                    <p className="font-sans text-[11.5px] min-[390px]:text-xs font-medium text-[#2A0007] mt-1">
                                         4:00 PM • Friday, Dec 11
                                     </p>
                                     <p className="font-sans text-[10px] min-[390px]:text-[10.5px] text-[#5A2D35] font-normal leading-tight mt-0.5">
@@ -594,11 +606,23 @@ export default function Letter({ isOpen, onClose, className, weddingData }: { is
                                 </div>
 
                                 {/* Janwasa Stay Card */}
-                                <div className="w-full border border-[#A68A48]/25 bg-[#75162D]/[0.02] rounded-md p-2 text-center">
-                                    <span className="font-sans uppercase text-[9px] min-[390px]:text-[9.5px] tracking-[0.18em] font-medium text-[#75162D] block">
-                                        Janwasa (Groom&apos;s Side Stay)
-                                    </span>
-                                    <p className="font-sans text-[11px] min-[390px]:text-[11.5px] font-medium text-[#2A0007] mt-0.5">
+                                <div className="w-full border border-[#A68A48]/30 bg-[#75162D]/[0.025] rounded-md p-2 min-[390px]:p-2.5 text-left transition-all hover:border-[#A68A48]/50">
+                                    <div className="flex items-center justify-between gap-2">
+                                        <span className="font-sans uppercase text-[9px] min-[390px]:text-[9.5px] tracking-[0.16em] font-medium text-[#75162D]">
+                                            Janwasa (Groom&apos;s Side Stay)
+                                        </span>
+                                        <a
+                                            href="https://maps.google.com/?q=Honest+Restro+Supanchak+Fatuha+Patna"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full border border-[#A68A48]/40 bg-[#F2E5C6] text-[#75162D] hover:bg-[#75162D] hover:text-[#F2E5C6] hover:border-[#75162D] text-[9px] uppercase font-sans tracking-[0.12em] font-medium transition-all shadow-xs active:scale-95 group shrink-0"
+                                            title="Open Janwasa location in Google Maps"
+                                        >
+                                            <MapPin className="w-2.5 h-2.5 text-[#75162D] group-hover:text-[#F2D9A0] transition-colors" />
+                                            <span>Map</span>
+                                        </a>
+                                    </div>
+                                    <p className="font-sans text-[11px] min-[390px]:text-[11.5px] font-medium text-[#2A0007] mt-1">
                                         HONEST RESTRO FOOD &amp; ROOM SERVICE
                                     </p>
                                     <p className="font-sans text-[10px] min-[390px]:text-[10.5px] text-[#5A2D35] font-normal leading-tight mt-0.5">

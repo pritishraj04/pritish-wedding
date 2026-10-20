@@ -24,11 +24,15 @@ interface StickyScrollCardsProps {
   className?: string;
   /** Scrollable parent container, if not scrolling the window */
   scrollContainer?: React.RefObject<HTMLElement | null>;
+  /** Custom tilt angles for cards in stack. First card defaults to 0 to prevent leaking from envelope. */
+  tiltPattern?: number[];
 }
 
 const DEFAULT_CARDS: StickyScrollCardItem[] = [];
 
-const TILT_PATTERN = [-1.25, 0.85, -0.65, 1.35, -0.9];
+// First card is set to 0 (straight) so it emerges cleanly from the envelope without leaking on the right.
+// Remaining cards use subtle angles (<= 0.35 deg) for an elegant, understated stationery feel.
+const DEFAULT_TILT_PATTERN = [0, 0.35, -0.25, 0.3, -0.2];
 
 function StackCard({
   card,
@@ -37,6 +41,7 @@ function StackCard({
   container,
   reduceMotion,
   scrollContainer,
+  tiltPattern = DEFAULT_TILT_PATTERN,
 }: {
   card: StickyScrollCardItem;
   index: number;
@@ -44,6 +49,7 @@ function StackCard({
   container: React.RefObject<HTMLDivElement | null>;
   reduceMotion: boolean;
   scrollContainer?: React.RefObject<HTMLElement | null>;
+  tiltPattern?: number[];
 }) {
   const { scrollYProgress } = useScroll({
     target: container,
@@ -58,13 +64,15 @@ function StackCard({
     reduceMotion ? [1, 1] : [1, restingScale],
   );
 
+  const rotateAngle = tiltPattern[index % tiltPattern.length];
+
   return (
     <section className="sticky top-0 grid h-[100dvh] place-items-center">
       <motion.figure
         className="relative m-0 origin-top overflow-visible rounded-sm transform-gpu"
         style={{
           scale,
-          rotate: reduceMotion ? 0 : TILT_PATTERN[index % TILT_PATTERN.length],
+          rotate: reduceMotion ? 0 : rotateAngle,
           top: `calc(5vh + ${index * 15}px)`,
           boxShadow:
             "0 2px 5px rgb(0 0 0 / 0.06), 0 18px 48px rgb(0 0 0 / 0.13)",
@@ -83,6 +91,7 @@ export function StickyScrollCards({
   hint = "scroll to explore",
   className,
   scrollContainer,
+  tiltPattern = DEFAULT_TILT_PATTERN,
 }: StickyScrollCardsProps) {
   const container = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion() ?? false;
@@ -111,6 +120,7 @@ export function StickyScrollCards({
           container={container}
           reduceMotion={reduceMotion}
           scrollContainer={scrollContainer}
+          tiltPattern={tiltPattern}
         />
       ))}
     </main>
