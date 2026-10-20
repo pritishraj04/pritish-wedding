@@ -86,36 +86,36 @@ export default function AudioPlayer({
   );
 
   const playWithFadeIn = useCallback(
-    (duration = fadeInDuration) => {
+    async (duration = fadeInDuration): Promise<boolean> => {
       const audio = audioRef.current;
-      if (!audio) return;
+      if (!audio) return false;
 
       loopStateRef.current = 'idle';
-      isPlayingRef.current = true;
-      setIsPlaying(true);
 
       if (audio.paused) {
         try {
           audio.volume = 0;
         } catch {}
-        const playPromise = audio.play();
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              if (isPlayingRef.current) {
-                fadeTo(targetVolume, duration);
-              }
-            })
-            .catch((err) => {
-              console.warn("Audio playback was prevented:", err);
-              isPlayingRef.current = false;
-              setIsPlaying(false);
-            });
-        } else {
+        try {
+          await audio.play();
+          isPlayingRef.current = true;
+          setIsPlaying(true);
           fadeTo(targetVolume, duration);
+          return true;
+        } catch (err: any) {
+          isPlayingRef.current = false;
+          setIsPlaying(false);
+          // Only log unexpected errors; NotAllowedError is standard browser policy awaiting user interaction
+          if (err?.name !== 'NotAllowedError') {
+            console.warn("Audio playback error:", err);
+          }
+          return false;
         }
       } else {
+        isPlayingRef.current = true;
+        setIsPlaying(true);
         fadeTo(targetVolume, duration);
+        return true;
       }
     },
     [fadeInDuration, targetVolume, fadeTo]
@@ -148,19 +148,22 @@ export default function AudioPlayer({
     } catch {}
     audioRef.current = audio;
 
-    let interactionHandled = false;
-    const events = ['click', 'touchstart', 'touchend', 'wheel', 'keydown'] as const;
+    let unlocked = false;
+    // Note: 'wheel' is intentionally omitted as modern browsers do not treat it as a user activation gesture for media playback
+    const events = ['click', 'pointerdown', 'touchstart', 'touchend', 'keydown'] as const;
 
     const cleanupInteractionListeners = () => {
       events.forEach((e) => document.removeEventListener(e, unlockAudio, true));
     };
     cleanupListenersRef.current = cleanupInteractionListeners;
 
-    const unlockAudio = () => {
-      if (!interactionHandled && autoplay && !isUserPausedRef.current) {
-        interactionHandled = true;
-        cleanupInteractionListeners();
-        playWithFadeIn(fadeInDuration);
+    const unlockAudio = async () => {
+      if (!unlocked && autoplay && !isUserPausedRef.current) {
+        const success = await playWithFadeIn(fadeInDuration);
+        if (success) {
+          unlocked = true;
+          cleanupInteractionListeners();
+        }
       }
     };
 
